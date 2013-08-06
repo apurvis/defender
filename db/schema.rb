@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 20130806003412) do
     t.date     "next_court_date"
     t.string   "next_court_part"
     t.string   "release_status"
-    t.string   "immigration_status"
     t.string   "new_york_state_id"
     t.string   "arrest_number"
     t.integer  "office_id"
@@ -95,8 +94,10 @@ ActiveRecord::Schema.define(:version => 20130806003412) do
   end
 
   create_table "defendants", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name"
+    t.string   "immigration_status"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "offices", :force => true do |t|

@@ -9,7 +9,6 @@ class CreateCases < ActiveRecord::Migration
       t.date :next_court_date
       t.string :next_court_part
       t.string :release_status
-      t.string :immigration_status
       t.string :new_york_state_id
       t.string :arrest_number
       t.integer :office_id
