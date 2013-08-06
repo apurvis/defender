@@ -14,10 +14,11 @@ class ChargesController < ApplicationController
         format.json { render :json => @charge.errors, :status => :unprocessable_entity }
       end
     end
-
-    redirect_to @charge
   end
 
+  def edit
+    @charge = Charge.find(params[:id])
+  end
 
   def show
     @charge = Charge.find(params[:id])
@@ -29,6 +30,20 @@ class ChargesController < ApplicationController
     respond_to do |format|
       format.html  # index.html.erb
       format.json  { render :json => @charges }
+    end
+  end
+
+  def update
+    @charge = Charge.find(params[:id])
+
+    respond_to do |format|
+      if @charge.update_attributes(params[:charge])
+        format.html  { redirect_to(@charge, :notice => "Charge #{@charge.id} was successfully updated.") }
+        format.json  { head :no_content }
+      else
+        format.html  { render :action => "edit" }
+        format.json  { render :json => @charge.errors, :status => :unprocessable_entity }
+      end
     end
   end
 

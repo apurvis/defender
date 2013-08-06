@@ -1,0 +1,25 @@
+<%= form_for(@charge) do |f| %>
+  <% if @charge.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@charge.errors.count, "error") %> prohibited
+        this post from being saved:</h2>
+    <ul>
+    <% @charge.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :offense_type %><br />
+    <%= f.select :offense_type, ['Violation', 'Misdemeanor', 'Felony'] %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
