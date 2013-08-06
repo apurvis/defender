@@ -1,0 +1,13 @@
+<h1>New Charge</h1>
+
+<%= form_for :charge, url: charges_path do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+    <%= f.label :offense_type %>
+    <%= f.select "offense_type", ["Violation", "Misdemeanor", "Felony"], {:include_blank => false}%>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
