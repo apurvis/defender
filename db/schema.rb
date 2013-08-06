@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130806003412) do
+ActiveRecord::Schema.define(:version => 20130806011306) do
 
   create_table "case_types", :force => true do |t|
     t.string   "name"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(:version => 20130806003412) do
     t.string   "lm_number"
     t.integer  "case_type_id"
     t.string   "docket_plus"
-    t.integer  "number_of_codefendants"
     t.string   "sentence"
     t.string   "cab_number"
     t.string   "law_firm_matter_number"
@@ -99,6 +98,17 @@ ActiveRecord::Schema.define(:version => 20130806003412) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end
+
+  create_table "defendants_cases", :force => true do |t|
+    t.integer  "defendant_id"
+    t.integer  "case_id"
+    t.datetime "deleted_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "defendants_cases", ["case_id"], :name => "index_defendants_cases_on_case_id"
+  add_index "defendants_cases", ["defendant_id"], :name => "index_defendants_cases_on_defendant_id"
 
   create_table "offices", :force => true do |t|
     t.string   "name"

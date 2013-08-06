@@ -30,7 +30,6 @@ class CreateCases < ActiveRecord::Migration
       t.string :lm_number
       t.integer :case_type_id
       t.string :docket_plus
-      t.integer :number_of_codefendants
       t.string :sentence
       t.string :cab_number
       t.string :law_firm_matter_number
