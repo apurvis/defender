@@ -47,6 +47,16 @@ class ChargesController < ApplicationController
     end
   end
 
+  def destroy
+    @charge = Charge.find(params[:id])
+    @charge.destroy
+
+    respond_to do |format|
+      format.html { redirect_to charges_url }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def charge_params
