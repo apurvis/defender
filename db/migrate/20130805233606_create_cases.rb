@@ -55,7 +55,7 @@ class CreateCases < ActiveRecord::Migration
       t.string :case
       t.integer :created_by_user_id
       t.integer :last_updated_by_user_id
-      t.integer :owner_id
+      t.integer :user_id
 
       t.timestamps
     end

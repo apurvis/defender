@@ -1,3 +1,3 @@
-class Attorney < ActiveRecord::Base
-  # attr_accessible :title, :body
+class Attorney < User
+  has_many :cases
 end

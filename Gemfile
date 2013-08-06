@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'devise'
 gem 'jquery-rails'
+gem 'migration_comments',   '0.2.1'
 gem 'mysql2', '0.3.11'
 gem 'rails', '3.2.9'
 
