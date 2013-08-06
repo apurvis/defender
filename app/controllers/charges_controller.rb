@@ -56,10 +56,4 @@ class ChargesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  private
-
-  def charge_params
-    params.require(:charge).permit(:name, :offense_type)
-  end
 end

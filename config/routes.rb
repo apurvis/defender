@@ -2,6 +2,7 @@ Defender::Application.routes.draw do
   devise_for :users
 
   resources :charges
+  resources :attorneys
 
 
   # The priority is based upon order of creation:

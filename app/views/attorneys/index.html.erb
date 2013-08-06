@@ -1,0 +1,22 @@
+<h1>Listing Attorneys</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @attorneys.each do |attorney| %>
+  <tr>
+    <td><%= attorney.name %></td>
+    <td><%= link_to 'Show', attorney %></td>
+    <td><%= link_to 'Edit', edit_attorney_path(attorney) %></td>
+    <td><%= link_to 'Destroy', attorney, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Attorney', new_attorney_path %>
