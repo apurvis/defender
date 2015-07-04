@@ -1,7 +1,7 @@
 <%= form_for(@attorney) do |f| %>
    <% if @attorney.errors.any? %>
-      <div id="errorExplanation">
-         <h2><%= pluralize(@attorney.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <div id='errorExplanation'>
+         <h2><%= pluralize(@attorney.errors.count, 'error') %> prohibited this post from being saved:</h2>
 
          <ul>
             <% @attorney.errors.full_messages.each do |msg| %>
@@ -11,12 +11,12 @@
       </div>
   <% end %>
 
-  <div class="field">
+  <div class='field'>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
 
-  <div class="actions">
+  <div class='actions'>
     <%= f.submit %>
   </div>
 <% end %>
