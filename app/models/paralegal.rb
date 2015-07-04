@@ -1,2 +1,0 @@
-class Paralegal < User
-end
