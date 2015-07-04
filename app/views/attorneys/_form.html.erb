@@ -2,6 +2,7 @@
    <% if @attorney.errors.any? %>
       <div id="errorExplanation">
          <h2><%= pluralize(@attorney.errors.count, "error") %> prohibited this post from being saved:</h2>
+
          <ul>
             <% @attorney.errors.full_messages.each do |msg| %>
                <li><%= msg %></li>

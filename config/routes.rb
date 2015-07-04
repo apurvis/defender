@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   resources :users
 
   resources :attorneys
+  resources :cases
+  resources :charges
+  resources :defendants
 end
