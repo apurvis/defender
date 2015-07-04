@@ -1,0 +1,2 @@
+class Paralegal < User
+end
