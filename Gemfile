@@ -1,34 +1,49 @@
 source 'https://rubygems.org'
+ruby '2.2.2'
 
+gem 'bootstrap-sass'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'devise'
+gem 'devise_invitable'
+gem 'haml-rails'
+gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
-gem 'migration_comments',   '0.2.1'
-gem 'mysql2', '0.3.11'
-gem 'rails', '3.2.9'
+gem 'paranoia'
+gem 'pg'
+gem 'rails', '4.2.3'
+gem 'sass-rails', '~> 5.0'
+gem 'simple_form'
+gem 'uglifier', '>= 1.3.0'
+gem 'upmin-admin'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.0.3'
+group :development, :test do
+  gem 'byebug'
+  gem 'web-console', '~> 2.0'
+  gem 'spring'
 end
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+group :development do
+  gem 'better_errors'
+  gem 'html2haml'
+  gem 'quiet_assets'
+  gem 'rails_layout'
+  gem 'spring-commands-rspec'
+end
 
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
+group :development, :test do
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'rspec-rails'
+end
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :production do
+  gem 'puma'
+  gem 'rails_12factor'
+end
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
+group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+end

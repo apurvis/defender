@@ -1,3 +1,2 @@
-class Attorney < User
-  has_many :cases
+class Attorney < ActiveRecord::Base
 end

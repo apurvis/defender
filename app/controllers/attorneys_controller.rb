@@ -1,59 +1,45 @@
 class AttorneysController < ApplicationController
-  def new
-  end
-
-  def create
-    @attorney = Attorney.new(params[:attorney])
-
-    respond_to do |format|
-      if @attorney.save
-        format.html { redirect_to(@attorney, :notice => "Attorney #{@attorney.id} was successfully created.")}
-        format.json { render :json => @attorney, :status => :created, :location => @attorney }
-      else
-        format.html { render :action => "new" }
-        format.json { render :json => @attorney.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  def edit
-    @attorney = Attorney.find(params[:id])
-  end
-
-  def show
-    @attorney = Attorney.find(params[:id])
-  end
+  before_action :authenticate_user!
 
   def index
     @attorneys = Attorney.all
+  end
 
-    respond_to do |format|
-      format.html  # index.html.erb
-      format.json  { render :json => @attorneys }
+  def show
+    @attorney = Attorney.where(id: params['id']).first
+  end
+
+  def edit
+    @attorney = Attorney.where(id: params['id']).first
+  end
+
+  def new
+    @attorney = Attorney.new
+  end
+
+  def create
+    @attorney = Attorney.new(statute_params)
+
+    if @attorney.save
+      redirect_to @attorney
+    else
+      render 'new'
     end
   end
 
   def update
-    @attorney = Attorney.find(params[:id])
+    @attorney = Attorney.where(id: params['id']).first
 
-    respond_to do |format|
-      if @attorney.update_attributes(params[:attorney])
-        format.html  { redirect_to(@attorney, :notice => "Attorney #{@attorney.id} was successfully updated.") }
-        format.json  { head :no_content }
-      else
-        format.html  { render :action => "edit" }
-        format.json  { render :json => @attorney.errors, :status => :unprocessable_entity }
-      end
+    if @attorney.update(statute_params)
+      redirect_to @attorney
+    else
+      render 'edit'
     end
   end
 
-  def destroy
-    @attorney = Attorney.find(params[:id])
-    @attorney.destroy
+  private
 
-    respond_to do |format|
-      format.html { redirect_to attorneys_url }
-      format.json { head :no_content }
-    end
+  def statute_params
+    params.require(:attorney).permit(:name, :state, :start_date, :blue_book_code, :expiration_date)
   end
 end
