@@ -37,6 +37,12 @@ class ChargesController < ApplicationController
     end
   end
 
+  def destroy
+    @charge = Charge.where(id: params['id']).first
+    @charge.destroy
+    redirect_to charges_path, :notice => "Charge Deleted."
+  end
+
   private
 
   def charge_params

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150830060849) do
+ActiveRecord::Schema.define(version: 20150830232525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,24 @@ ActiveRecord::Schema.define(version: 20150830060849) do
 
   add_index "defendants_cases", ["case_id"], name: "index_defendants_cases_on_case_id", using: :btree
   add_index "defendants_cases", ["defendant_id"], name: "index_defendants_cases_on_defendant_id", using: :btree
+
+  create_table "defendants_mailing_addresses", force: :cascade do |t|
+    t.integer  "defendant_id"
+    t.integer  "mailing_address_id"
+    t.datetime "last_verified"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "mailing_addresses", force: :cascade do |t|
+    t.string   "address_line_1"
+    t.string   "address_line_2"
+    t.string   "city"
+    t.string   "state",          limit: 2
+    t.string   "zip_code"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "offices", force: :cascade do |t|
     t.string   "name"

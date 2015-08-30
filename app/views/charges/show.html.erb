@@ -2,14 +2,14 @@
    <tr>
       <th>Name</th>
       <th>Offense Type</th>
-      <th></th>
-      <th></th>
+      <th>Edit</th>
+      <th>Delete</th>
    </tr>
 
    <tr>
       <td><%= link_to @charge.name, @charge %></td>
       <td><%= @charge.offense_type %></td>
       <td><%= link_to 'Edit', edit_charge_path(@charge) %></td>
-      <td><%= link_to 'Destroy', @charge, :confirm => 'Are you sure?', method: :delete %></td>
+      <td><%= link_to 'Delete', @charge, :confirm => 'Are you sure?', method: :delete %></td>
    </tr>
 </table>

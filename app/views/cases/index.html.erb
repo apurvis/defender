@@ -52,9 +52,8 @@
       <th>practice</th>
       <th>case</th>
 
-      <th>Show</th>
       <th>Edit</th>
-      <th>Destroy</th>
+      <th>Delete</th>
    </tr>
 
    <% @cases.each do |c| %>
@@ -109,9 +108,8 @@
          <td><%= c.practice %></td>
          <td><%= c.case %></td>
 
-         <td><%= link_to 'Show', c %></td>
          <td><%= link_to 'Edit', edit_case_path(c) %></td>
-         <td><%= link_to 'Destroy', c, confirm: 'Are you sure?', method: :delete %></td>
+         <td><%= link_to 'Delete', c, confirm: 'Are you sure?', method: :delete %></td>
       </tr>
    <% end %>
 </table>
