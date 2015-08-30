@@ -9,7 +9,8 @@ Basic rails app for public defender case management.
 git pull
 bundle exec rake db:create
 bundle exec rake db:migrate
-bundle exec script/populate_initial_data.rb
+# Optionally you can elect to load some bootstrap sample data into your development environment.
+bundle exec data_script/bootstrap_development_data.rb
 ```
 
 Then launch a rails console and set yourself up a user:
