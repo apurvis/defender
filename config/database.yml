@@ -18,7 +18,6 @@ development:
   encoding: unicode
   database: defender_development
   pool:     5
-  username: defender
   password:
   template: template0
 
@@ -46,7 +45,6 @@ test:
   encoding: unicode
   database: defender_test
   pool:     5
-  username: defender
   password:
   template: template0
 
