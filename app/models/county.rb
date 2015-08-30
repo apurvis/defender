@@ -1,5 +1,5 @@
 class County < ActiveRecord::Base
   def to_s
-    name
+    "#{name}, #{state}"
   end
 end
