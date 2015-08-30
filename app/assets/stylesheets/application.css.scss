@@ -14,12 +14,99 @@
  *= require_self
  */
 
+body {
+   font-family: Lato;
+}
+
+td.schedule_level {
+   text-align: center;
+}
+
+td.button {
+   text-align: center;
+}
+
+table.properties {
+   border: none;
+}
+
+td.properties {
+   background-color: #FBFCFF;
+   font-size: 140%;
+   font-weight: bold;
+}
+
+td.property {
+   background-color: #FBFCFF;
+   font-size: 140%;
+   text-align: right;
+}
+
 table, td {
    border: 1px solid black;
+   background-color: white;
+}
+
+td, th {
+   padding-left: 3px;
+   padding-right: 3px;
 }
 
 th {
    text-align: center;
    text-transform: uppercase;
    border: 1px solid black;
+}
+
+div {
+   float: left;
+}
+
+div.statute_list, div.scheduled_substances, div.amendments, div.comment, div.quick_links {
+   width: 100%;
+}
+
+.basic_info {
+   background-color: #E6F0FF;
+   border: 1px solid black;
+   clear: both;
+   padding-left: 10px;
+   padding-bottom: 10px;
+   padding-right: 10px;
+   float: left;
+   width: 70%;
+}
+
+div.filter_notification {
+   color: red;
+   margin-top: 5px;
+   background-color: #FFFFFF;
+   border: 1px solid black;
+   clear: both;
+   padding-left: 10px;
+   padding-bottom: 10px;
+   padding-right: 10px;
+   float: center;
+   width: 70%;
+   text-align: center;
+}
+
+div.comments {
+   background-color: #F0F0FF;
+   margin-top: 10px;
+   border: 1px solid black;
+   clear: both;
+   padding-left: 10px;
+   padding-bottom: 10px;
+   padding-right: 10px;
+   width: 100%;
+}
+
+div.main_container {
+   width: 100%;
+   clear: both;
+}
+
+div.field, div.actions {
+   clear: both;
 }

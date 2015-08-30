@@ -15,6 +15,14 @@
       <%= select(:case, :attorney_id, Attorney.all.map { |c| [c.name[0..50], c.id] } ) %>
    </div>
    <div class='field'>
+      <%= f.label :county %><br/>
+      <%= select(:case, :county_id, County.all.map { |c| [c.name[0..50], c.id] } ) %>
+   </div>
+   <div class='field'>
+      <%= f.label :office %><br/>
+      <%= select(:case, :office_id, Office.all.map { |c| [c.name[0..50], c.id] } ) %>
+   </div>
+   <div class='field'>
       <%= f.label :docket_number %><br />
       <%= f.text_field :docket_number %>
    </div>
@@ -49,10 +57,6 @@
    <div class='field'>
       <%= f.label :arrest_number %><br/>
       <%= f.text_field :arrest_number %>
-   </div>
-   <div class='field'>
-      <%= f.label :office %><br/>
-      <%= select(:case, :office_id, Office.all.map { |c| [c.name[0..50], c.id] } ) %>
    </div>
    <div class='field'>
       <%= f.label :opened_date %><br/>
@@ -101,10 +105,6 @@
    <div class='field'>
       <%= f.label :status_flag %><br/>
       <%= f.text_field :status_flag %>
-   </div>
-   <div class='field'>
-      <%= f.label :county %><br/>
-      <%= select(:case, :county_id, County.all.map { |c| [c.name[0..50], c.id] } ) %>
    </div>
    <div class='field'>
       <%= f.label :top_sentence %><br/>

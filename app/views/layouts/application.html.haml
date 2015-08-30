@@ -2,9 +2,10 @@
 %html
   %head
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %title= content_for?(:title) ? yield(:title) : 'Defender'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Defender'}"}
+    %title= content_for?(:title) ? yield(:title) : 'Controlled Sub Data'
+    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Controlled Sub Data'}"}
     = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
@@ -12,4 +13,6 @@
       = render 'layouts/navigation'
     %main{:role => "main"}
       = render 'layouts/messages'
-      = yield
+      %div{:class => 'main_container'}
+        = yield
+      = render 'layouts/home'
