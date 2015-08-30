@@ -1,4 +1,9 @@
-<p>
-  <strong>Name:</strong>
-  <%= @attorney.name %>
-</p>
+<div class='basic_info'>
+   <h2>
+     <strong>NAME:</strong> <%= @attorney.name %> (<%= link_to 'edit', edit_attorney_path(@attorney) %>)
+   </h2>
+</div>
+
+<div class='cases'>
+   <h2>CASES</h2>
+</div>
