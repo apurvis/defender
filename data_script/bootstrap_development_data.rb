@@ -33,7 +33,7 @@ end
 
 def create_defendants
   Defendant.create(name: "James O\'Fender")
-  Defendant.create(name: "Pug I. Listic")
+  Defendant.create(name: "Pug I. Listic", immigration_status: 'good')
 end
 
 def create_charges

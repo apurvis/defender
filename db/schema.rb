@@ -11,26 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831004638) do
+ActiveRecord::Schema.define(version: 20150831034826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "attorneys", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "attorneys_cases", force: :cascade do |t|
-    t.integer  "attorney_id"
-    t.integer  "case_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "attorneys_cases", ["attorney_id"], name: "index_attorneys_cases_on_attorney_id", using: :btree
-  add_index "attorneys_cases", ["case_id"], name: "index_attorneys_cases_on_case_id", using: :btree
 
   create_table "case_types", force: :cascade do |t|
     t.string   "name"
@@ -113,13 +97,6 @@ ActiveRecord::Schema.define(version: 20150831004638) do
     t.string   "state"
   end
 
-  create_table "defendants", force: :cascade do |t|
-    t.string   "name"
-    t.string   "immigration_status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "defendants_cases", force: :cascade do |t|
     t.integer  "defendant_id"
     t.integer  "case_id"
@@ -130,14 +107,6 @@ ActiveRecord::Schema.define(version: 20150831004638) do
 
   add_index "defendants_cases", ["case_id"], name: "index_defendants_cases_on_case_id", using: :btree
   add_index "defendants_cases", ["defendant_id"], name: "index_defendants_cases_on_defendant_id", using: :btree
-
-  create_table "defendants_mailing_addresses", force: :cascade do |t|
-    t.integer  "defendant_id"
-    t.integer  "mailing_address_id"
-    t.datetime "last_verified"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-  end
 
   create_table "mailing_addresses", force: :cascade do |t|
     t.string   "address_line_1"
@@ -153,6 +122,32 @@ ActiveRecord::Schema.define(version: 20150831004638) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string   "type"
+    t.string   "name"
+    t.string   "immigration_status"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  create_table "people_cases", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "case_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "people_cases", ["case_id"], name: "index_people_cases_on_case_id", using: :btree
+  add_index "people_cases", ["person_id"], name: "index_people_cases_on_person_id", using: :btree
+
+  create_table "people_mailing_addresses", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "mailing_address_id"
+    t.datetime "last_verified"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "phone_numbers", force: :cascade do |t|

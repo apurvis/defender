@@ -1,0 +1,2 @@
+class Witness < Person
+end
