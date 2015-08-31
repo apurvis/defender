@@ -3,7 +3,9 @@ class Case < ActiveRecord::Base
   belongs_to :attorney
 
   has_many :defendants_cases
-  has_many :defendants, :through => :defendants_cases
+  has_many :defendants, through: :defendants_cases
+  has_many :attorneys_cases
+  has_many :attorneys, through: :attorneys_cases
 
   belongs_to :office
   belongs_to :county

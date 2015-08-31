@@ -18,7 +18,7 @@ class AttorneysController < ApplicationController
   end
 
   def create
-    @attorney = Attorney.new(statute_params)
+    @attorney = Attorney.new(attorney_params)
 
     if @attorney.save
       redirect_to @attorney
@@ -30,7 +30,7 @@ class AttorneysController < ApplicationController
   def update
     @attorney = Attorney.where(id: params['id']).first
 
-    if @attorney.update(statute_params)
+    if @attorney.update(attorney_params)
       redirect_to @attorney
     else
       render 'edit'
@@ -41,10 +41,9 @@ class AttorneysController < ApplicationController
     attorney = Attorney.where(id: params[:id]).first
     attorney_name = attorney.name
     if attorney.cases.size > 0
-      flash.alert = "Cannot delete an attorney who still has cases in the system."
+      flash.alert = "Cannot delete attorney #{attorney.name} who still has cases in the system."
       redirect_to attorneys_path
     else
-      notice = "Successfully deleted statute #{@statute.formatted_name}"
       attorney.destroy
       redirect_to attorneys_path, notice: "Attorney #{attorney.name} deleted."
     end
@@ -52,7 +51,7 @@ class AttorneysController < ApplicationController
 
   private
 
-  def statute_params
+  def attorney_params
     params.require(:attorney).permit(:name, :state, :start_date, :blue_book_code, :expiration_date)
   end
 end
