@@ -39,8 +39,12 @@ class ChargesController < ApplicationController
 
   def destroy
     @charge = Charge.where(id: params['id']).first
-    @charge.destroy
-    redirect_to charges_path, :notice => "Charge Deleted."
+    if @charge.cases.size > 0
+      redirect_to charges_path, alert: "Cannot delete #{@charge.name} - still has #{@charge.cases.size} linked cases"
+    else
+      @charge.destroy
+      redirect_to charges_path, :notice => "Charge Deleted."
+    end
   end
 
   private
