@@ -14,4 +14,8 @@ class DefendantsController < ApplicationController
   def new
     @defendant = Defendant.new
   end
+
+  def defendant_params
+    params.require(:attorney).permit(:name)
+  end
 end

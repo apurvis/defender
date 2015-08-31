@@ -1,0 +1,18 @@
+<div class='sub_basic_info'>
+   <h3>Phone Numbers (<%= link_to('Add phone number', new_phone_number_path) %>)</h3>
+   <table>
+      <tr>
+         <th>Description</th>
+         <th>Number</th>
+         <th>Edit</th>
+         <th>Delete</th>
+      </tr>
+      <% numbers.each do |n| %>
+         <tr>
+            <td><%= n.description %></td>
+            <td><%= n.number %></td>
+            <td>
+         </tr>
+      <% end %>
+   </table>
+</div>

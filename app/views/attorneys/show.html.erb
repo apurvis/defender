@@ -2,6 +2,7 @@
    <h2>
      <strong>NAME:</strong> <%= @attorney.name %> (<%= link_to 'edit', edit_attorney_path(@attorney) %>)
    </h2>
+   <%= render partial: 'phone_numbers/phone_number_list', locals: { numbers: @attorney.phone_numbers } %>
 </div>
 
 <div class='cases'>
@@ -19,3 +20,4 @@
       <% end %>
    </table>
 </div>
+

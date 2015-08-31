@@ -17,7 +17,7 @@ bundle exec data_script/bootstrap_development_data.rb
 
 Then launch a rails console and set yourself up a user:
 ```ruby
-user = User.new(:email => 'test_account@test.com', :password => 'b00kies')
+user = User.new(:email => 'test_account@test.com', :password => 'b00kies1999')
 user.skip_confirmation!
 user.role = 'admin'
 user.save
