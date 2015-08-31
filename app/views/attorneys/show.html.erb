@@ -6,4 +6,16 @@
 
 <div class='cases'>
    <h2>CASES</h2>
+   <table>
+      <tr>
+         <th>Docket Number</th>
+         <th>Next Court Date</th>
+      </tr>
+      <% @attorney.cases.each do |c| %>
+         <tr>
+            <td><%= link_to(c.docket_number, case_path(c)) %></td>
+            <td><%= c.next_court_date %></td>
+         </tr>
+      <% end %>
+   </table>
 </div>

@@ -16,6 +16,8 @@ class Case < ActiveRecord::Base
   belongs_to :current_top_charge, foreign_key: 'current_top_charge_id', class_name: 'Charge'
   belongs_to :disposition_top_charge, foreign_key: 'disposition_top_charge_id', class_name: 'Charge'
 
+  validates_presence_of :docket_number
+
   def number_of_defendants
     defendants.size
   end
