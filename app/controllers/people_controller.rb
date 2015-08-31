@@ -42,8 +42,7 @@ class PeopleController < ApplicationController
     person = Person.where(id: params[:id]).first
     person_name = person.name
     if person.cases.size > 0
-      flash.alert = "Cannot delete person #{person.name} who still has cases in the system."
-      redirect_to people_path
+      redirect_to people_path, alert: "Cannot delete person #{person.name} who still has cases in the system."
     else
       person.destroy
       redirect_to people_path, notice: "Person #{person_name} deleted."

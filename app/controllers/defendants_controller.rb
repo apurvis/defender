@@ -3,4 +3,8 @@ class DefendantsController < PeopleController
     @class_name = 'Defendant'
     @people = Defendant.all
   end
+
+  def new
+    @person = Defendant.new
+  end
 end
