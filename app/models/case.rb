@@ -2,6 +2,9 @@ class Case < ActiveRecord::Base
   belongs_to :user
   belongs_to :attorney
 
+  has_many :people_cases
+  has_many :people, through: :people_cases
+
   has_many :defendants_cases
   has_many :defendants, through: :defendants_cases
   has_many :attorneys_cases
@@ -17,6 +20,18 @@ class Case < ActiveRecord::Base
   belongs_to :disposition_top_charge, foreign_key: 'disposition_top_charge_id', class_name: 'Charge'
 
   validates_presence_of :docket_number
+
+  def attorneys
+    people.where(type: 'Attorney')
+  end
+
+  def defendants
+    people.where(type: 'Defendant')
+  end
+
+  def witnesses
+    people.where(type: 'Witness')
+  end
 
   def number_of_defendants
     defendants.size

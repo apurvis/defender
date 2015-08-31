@@ -30,7 +30,7 @@ class ChargesController < ApplicationController
   def update
     @charge = Charge.where(id: params['id']).first
 
-    if @charge.update(statute_params)
+    if @charge.update(charge_params)
       redirect_to @charge
     else
       render 'edit'

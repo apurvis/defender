@@ -20,12 +20,7 @@ class CasesController < ApplicationController
   def create
     @case = Case.new(case_params)
     if @case.save
-      @attorney_case = AttorneysCase.new(case_id: @case.id, attorney_id: attorneys_case_params[:attorney_id])
-      if @attorney_case.save
-        redirect_to @case
-      else
-        render 'new'
-      end
+      redirect_to @case
     else
       render 'new'
     end
@@ -34,7 +29,7 @@ class CasesController < ApplicationController
   def update
     @case = Case.where(id: params['id']).first
 
-    if @case.update(statute_params)
+    if @case.update(attorneys_case_params)
       redirect_to @case
     else
       render 'edit'
@@ -45,9 +40,5 @@ class CasesController < ApplicationController
 
   def case_params
     params.require(:case).permit(:docket_number, :indictment_number, :status, :stage, :next_court_date, :next_court_part, :release_status, :new_york_state_id, :arrest_number, :office_id, :opened_date, :closed_date, :disposition_date, :final_disposition, :city_disposition, :city_disposition_date, :initial_top_charge, :current_top_charge, :disposition_top_charge, :itype, :dtype, :status_flag, :county_id, :top_sentence, :pro_bono, :lm_number, :case_type, :docket_plus, :sentence, :cab_number, :law_firm_matter_number, :aid, :dsp, :mica, :k_calendar, :contested, :board_case, :school_related, :warrant_number, :court_index, :probation_issue, :probation_request, :ati, :evaluation, :conflict_check, :start_workflow, :court_forum, :practice_id, :case)
-  end
-
-  def attorneys_case_params
-    params.require(:case).permit(:attorney_id)
   end
 end

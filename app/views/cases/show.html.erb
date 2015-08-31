@@ -105,3 +105,18 @@
       <td><%= @case.case %></td>
    </tr>
 </table>
+
+<div class='sub_basic_info'>
+   <h2>Attorneys (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
+   <%= render partial: 'people/people_list', locals: { people: @case.attorneys } %>
+</div>
+
+<div class='sub_basic_info'>
+   <h2>Defendants (<%= link_to('Add Defendant', new_people_case_path(case_id: @case.id, person_class: 'Defendant')) %>)</h2>
+   <%= render partial: 'people/people_list', locals: { people: @case.defendants } %>
+</div>
+
+<div class='sub_basic_info'>
+   <h2>Witnesses (<%= link_to('Add Witness', new_people_case_path(case_id: @case.id, person_class: 'Witness')) %>)</h2>
+   <%= render partial: 'people/people_list', locals: { people: @case.witnesses } %>
+</div>

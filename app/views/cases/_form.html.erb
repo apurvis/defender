@@ -11,10 +11,6 @@
    <% end %>
 
    <div class='field'>
-      <%= f.label :attorney %><br />
-      <%= select(:case, :attorney_id, Attorney.all.map { |c| [c.name[0..50], c.id] } ) %>
-   </div>
-   <div class='field'>
       <%= f.label :county %><br/>
       <%= select(:case, :county_id, County.all.map { |c| [c.name[0..50], c.id] } ) %>
    </div>
