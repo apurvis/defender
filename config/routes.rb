@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :defendants
   resources :people
   resources :phone_numbers
+  resources :witnesses
 end

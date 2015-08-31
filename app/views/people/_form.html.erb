@@ -1,19 +1,32 @@
-<%= form_for(@attorney) do |f| %>
-   <% if @attorney.errors.any? %>
+<%= form_for(@person) do |f| %>
+   <% if @person.errors.any? %>
       <div id='errorExplanation'>
-         <h2><%= pluralize(@attorney.errors.count, 'error') %> prohibited this attorney from being saved:</h2>
+         <h2><%= pluralize(@person.errors.count, 'error') %> prohibited this person from being saved:</h2>
 
          <ul>
-            <% @attorney.errors.full_messages.each do |msg| %>
+            <% @person.errors.full_messages.each do |msg| %>
                <li><%= msg %></li>
             <% end %>
          </ul>
       </div>
-  <% end %>
+   <% end %>
 
-  <div class='field'>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %><br />
-    <%= f.submit %>
-  </div>
+   <div class='field'>
+      <%= f.label :type %><br />
+      <%= select(:person, :type, ['Attorney', 'Defendant', 'Witness']) %>
+   </div>
+
+   <div class='field'>
+      <%= f.label :name %><br />
+      <%= f.text_field :name %><br />
+   </div>
+
+   <div class='field'>
+      <%= f.label :immigration_status %><br />
+      <%= f.text_field :immigration_status %><br />
+   </div>
+
+   <div class='field'>
+      <%= f.submit %>
+   </div>
 <% end %>

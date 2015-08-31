@@ -42,8 +42,13 @@ def create_charges
   Charge.create(name: 'Robbery', offense_type: 'Felony')
 end
 
+def create_witnesses
+  Witness.create(name: 'Eesaw Sumthin')
+end
+
 create_counties
 create_offices
 create_attorneys
 create_defendants
 create_charges
+create_witnesses

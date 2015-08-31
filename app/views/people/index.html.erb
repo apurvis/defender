@@ -2,6 +2,7 @@
 
 <table>
    <tr>
+      <th>Type</th>
       <th>Name</th>
       <% if @people.all? { |p| p.is_a?(Defendant) } %>
          <th>Immigration Status</th>
@@ -12,6 +13,7 @@
 
    <% @people.each do |p| %>
       <tr>
+         <td><%= p.type %></td>
          <td><%= link_to(p.name, p) %></td>
          <% if @people.all? { |p| p.is_a?(Defendant) } %>
             <th><%= p.immigration_status%></th>
@@ -24,4 +26,4 @@
 
 <br />
 
-<%= link_to 'New Attorney', new_attorney_path %>
+<%= link_to 'New Person', new_person_path %>
