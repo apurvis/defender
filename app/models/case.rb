@@ -5,11 +5,6 @@ class Case < ActiveRecord::Base
   has_many :people_cases
   has_many :people, through: :people_cases
 
-  has_many :defendants_cases
-  has_many :defendants, through: :defendants_cases
-  has_many :attorneys_cases
-  has_many :attorneys, through: :attorneys_cases
-
   belongs_to :office
   belongs_to :county
   belongs_to :case_type
@@ -25,15 +20,23 @@ class Case < ActiveRecord::Base
     people.where(type: 'Attorney')
   end
 
+  def attorneys_cases
+    people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Attorney'")
+  end
+
   def defendants
     people.where(type: 'Defendant')
+  end
+
+  def defendants_cases
+    people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Defendant'")
   end
 
   def witnesses
     people.where(type: 'Witness')
   end
 
-  def number_of_defendants
-    defendants.size
+  def witnesses_cases
+    people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Witness'")
   end
 end

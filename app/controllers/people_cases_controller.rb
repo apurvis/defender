@@ -23,6 +23,17 @@ class PeopleCasesController < ApplicationController
     redirect_to @case
   end
 
+  def destroy
+    person_case = PeopleCase.where(id: params[:id]).first
+    @case = person_case.case
+    notice = "Removed #{person_case.person.type} #{person_case.person.name} from Docket Number #{person_case.case.docket_number}"
+    person_case.destroy
+    flash.notice = notice
+    redirect_to @case
+  end
+
+  private
+
   def people_case_params
     params.require(:people_case).permit(:person_id, :case_id)
   end

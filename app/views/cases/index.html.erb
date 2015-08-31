@@ -4,6 +4,8 @@
    <tr>
       <th>Docket Number</th>
       <th>Attorney(s)</th>
+      <th>Defendant(s)</th>
+      <th>Witness(es)</th>
       <th>Indictment Number</th>
       <th>status</th>
       <th>stage</th>
@@ -61,6 +63,8 @@
       <tr>
          <td><%= link_to(c.docket_number, case_path(c)) %></td>
          <td><%= c.attorneys.map { |a| link_to(a.name, attorney_path(a)) }.join(', ').html_safe %>
+         <td><%= c.defendants.map { |a| link_to(a.name, defendant_path(a)) }.join(', ').html_safe %>
+         <td><%= c.witnesses.map { |a| link_to(a.name, witness_path(a)) }.join(', ').html_safe %>
          <td><%= c.indictment_number %></td>
          <td><%= c.status %></td>
          <td><%= c.stage %></td>

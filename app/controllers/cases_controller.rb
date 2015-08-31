@@ -36,6 +36,17 @@ class CasesController < ApplicationController
     end
   end
 
+  def destroy
+    @case = Case.find_by_id(params['id'])
+    if @case.people.size > 0
+      flash.alert = "Cannot delete docket number #{@case.docket_number} because it is still attached to people"
+    else
+      @case.destroy
+    end
+
+    redirect_to cases_path
+  end
+
   private
 
   def case_params

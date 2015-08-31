@@ -2,7 +2,6 @@
    <tr>
       <th>Docket Number</th>
       <th>Indictment Number</th>
-      <th>Attorney(s)</th>
       <th>status</th>
       <th>stage</th>
       <th>next court date</th>
@@ -55,7 +54,6 @@
    <tr>
       <td><%= @case.docket_number %></td>
       <td><%= @case.indictment_number %></td>
-      <td><%= @case.attorneys.map { |a| link_to(a.name, attorney_path(a)) }.join(', ').html_safe %></td>
       <td><%= @case.status %></td>
       <td><%= @case.stage %></td>
       <td><%= @case.next_court_date %></td>
@@ -108,15 +106,15 @@
 
 <div class='sub_basic_info'>
    <h2>Attorneys (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
-   <%= render partial: 'people/people_list', locals: { people: @case.attorneys } %>
+   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.attorneys_cases } %>
 </div>
 
 <div class='sub_basic_info'>
    <h2>Defendants (<%= link_to('Add Defendant', new_people_case_path(case_id: @case.id, person_class: 'Defendant')) %>)</h2>
-   <%= render partial: 'people/people_list', locals: { people: @case.defendants } %>
+   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defendants_cases } %>
 </div>
 
 <div class='sub_basic_info'>
    <h2>Witnesses (<%= link_to('Add Witness', new_people_case_path(case_id: @case.id, person_class: 'Witness')) %>)</h2>
-   <%= render partial: 'people/people_list', locals: { people: @case.witnesses } %>
+   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.witnesses_cases } %>
 </div>

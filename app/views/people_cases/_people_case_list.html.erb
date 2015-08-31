@@ -1,0 +1,21 @@
+<table>
+   <tr>
+      <th>Type</th>
+      <th>Name</th>
+      <% if people_cases.all? { |pc| pc.person.is_a?(Defendant) } %>
+         <th>Immigration Status</th>
+      <% end %>
+      <th>Delete</th>
+   </tr>
+
+   <% people_cases.each do |pc| %>
+      <tr>
+         <td><%= pc.person.type %></td>
+         <td><%= link_to(pc.person.name, pc.person) %></td>
+         <% if people_cases.all? { |pc| pc.person.is_a?(Defendant) } %>
+            <th><%= pc.person.immigration_status%></th>
+         <% end %>
+         <td><%= link_to 'Delete', pc, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+   <% end %>
+</table>

@@ -1,5 +1,5 @@
 <div class='sub_basic_info'>
-   <h3>Phone Numbers (<%= link_to('Add phone number', new_phone_number_path) %>)</h3>
+   <h3>Phone Numbers (<%= link_to('Add phone number', new_phone_number_path(person_id: @person.id)) %>)</h3>
    <table>
       <tr>
          <th>Description</th>
@@ -11,7 +11,8 @@
          <tr>
             <td><%= n.description %></td>
             <td><%= n.number %></td>
-            <td>
+            <td><%= link_to 'Edit', edit_phone_number_path(n) %></td>
+            <td><%= link_to 'Delete', n, confirm: 'Are you sure?', method: :delete %></td>
          </tr>
       <% end %>
    </table>

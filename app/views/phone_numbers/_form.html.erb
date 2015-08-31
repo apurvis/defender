@@ -12,10 +12,6 @@
    <% end %>
 
    <div class='field'>
-      <p>Phone number for <%= @phone_number.phoneable.class %> <%= @phone_number.phoneable.to_s %></p>
-   </div>
-
-   <div class='field'>
       <%= f.label :description %><br />
       <%= f.text_field :description %><br />
    </div>
@@ -24,6 +20,9 @@
       <%= f.label :number %><br />
       <%= f.text_field :number %><br />
    </div>
+
+   <%= f.hidden_field :phoneable_type, value: 'Person' %>
+   <%= f.hidden_field :phoneable_id, value: @person.id %>
 
    <div class='field'>
       <%= f.submit %>
