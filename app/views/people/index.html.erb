@@ -19,7 +19,7 @@
             <th><%= p.immigration_status%></th>
          <% end %>
          <td><%= link_to 'Edit', edit_person_path(p) %></td>
-         <td><%= link_to 'Delete', p, :confirm => 'Are you sure?', :method => :delete %></td>
+         <td><%= link_to 'Delete', p, confirm: 'Are you sure?', method: :delete %></td>
       </tr>
    <% end %>
 </table>
