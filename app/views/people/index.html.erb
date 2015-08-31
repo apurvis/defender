@@ -1,0 +1,29 @@
+<h1><%= @class_name.pluralize %></h1>
+
+<table>
+   <tr>
+      <th>Type</th>
+      <th>Name</th>
+      <% if @people.all? { |p| p.is_a?(Defendant) } %>
+         <th>Immigration Status</th>
+      <% end %>
+      <th>Edit</th>
+      <th>Delete</th>
+   </tr>
+
+   <% @people.each do |p| %>
+      <tr>
+         <td><%= p.type %></td>
+         <td><%= link_to(p.name, p) %></td>
+         <% if @people.all? { |p| p.is_a?(Defendant) } %>
+            <th><%= p.immigration_status%></th>
+         <% end %>
+         <td><%= link_to 'Edit', edit_person_path(p) %></td>
+         <td><%= link_to 'Delete', p, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+   <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Person', new_person_path %>

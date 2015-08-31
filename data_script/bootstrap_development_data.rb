@@ -33,7 +33,7 @@ end
 
 def create_defendants
   Defendant.create(name: "James O\'Fender")
-  Defendant.create(name: "Pug I. Listic")
+  Defendant.create(name: "Pug I. Listic", immigration_status: 'good')
 end
 
 def create_charges
@@ -42,8 +42,13 @@ def create_charges
   Charge.create(name: 'Robbery', offense_type: 'Felony')
 end
 
+def create_witnesses
+  Witness.create(name: 'Eesaw Sumthin')
+end
+
 create_counties
 create_offices
 create_attorneys
 create_defendants
 create_charges
+create_witnesses

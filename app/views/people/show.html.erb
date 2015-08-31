@@ -1,8 +1,8 @@
 <div class='basic_info'>
    <h2>
-     <strong>NAME:</strong> <%= @attorney.name %> (<%= link_to 'edit', edit_attorney_path(@attorney) %>)
+     <strong>NAME:</strong> <%= @person.name %> (<%= link_to 'edit', edit_person_path(@person) %>)
    </h2>
-   <%= render partial: 'phone_numbers/phone_number_list', locals: { numbers: @attorney.phone_numbers } %>
+   <%= render partial: 'phone_numbers/phone_number_list', locals: { numbers: @person.phone_numbers } %>
 </div>
 
 <div class='cases'>
@@ -12,7 +12,7 @@
          <th>Docket Number</th>
          <th>Next Court Date</th>
       </tr>
-      <% @attorney.cases.each do |c| %>
+      <% @person.cases.each do |c| %>
          <tr>
             <td><%= link_to(c.docket_number, case_path(c)) %></td>
             <td><%= c.next_court_date %></td>
@@ -20,4 +20,3 @@
       <% end %>
    </table>
 </div>
-
