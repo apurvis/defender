@@ -2,6 +2,7 @@ class PeopleController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @class_name = 'Person'
     @people = Person.all
   end
 
