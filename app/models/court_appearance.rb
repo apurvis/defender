@@ -1,0 +1,2 @@
+class CourtAppearance < Event
+end

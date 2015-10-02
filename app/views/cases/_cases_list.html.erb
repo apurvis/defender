@@ -1,0 +1,89 @@
+<table>
+   <tr>
+      <th>Docket Number</th>
+      <th>Attorney(s)</th>
+      <th>Defendant(s)</th>
+      <th>Judge(s)</th>
+      <th>Witness(es)</th>
+      <th>Indictment Number</th>
+      <th>status</th>
+      <th>stage</th>
+      <th>next court date</th>
+      <th>next court part</th>
+      <th>release status</th>
+      <th>arrest number</th>
+      <th>office</th>
+      <th>opened date</th>
+      <th>closed date</th>
+      <th>disposition date</th>
+      <th>final disposition</th>
+      <th>city disposition</th>
+      <th>city disposition date</th>
+      <th>initial top charge</th>
+      <th>current top charge</th>
+      <th>disposition top charge</th>
+      <th>county</th>
+      <th>top sentence</th>
+      <th>pro bono</th>
+      <th>case type</th>
+      <th>sentence</th>
+      <th>law firm matter number</th>
+      <th>school related</th>
+      <th>warrant number</th>
+      <th>court index</th>
+      <th>probation issue</th>
+      <th>probation request</th>
+      <th>evaluation</th>
+      <th>conflict check</th>
+      <th>court forum</th>
+      <th>practice</th>
+
+      <th>Edit</th>
+      <th>Delete</th>
+   </tr>
+
+   <% cases.each do |c| %>
+      <tr>
+         <td><%= link_to(c.docket_number, case_path(c)) %></td>
+         <td><%= c.attorneys.map { |a| link_to(a.name, attorney_path(a)) }.join(', ').html_safe %>
+         <td><%= c.defendants.map { |a| link_to(a.name, defendant_path(a)) }.join(', ').html_safe %>
+         <td><%= c.judges.map { |j| link_to(j.name, judge_path(j)) }.join(', ').html_safe %>
+         <td><%= c.witnesses.map { |a| link_to(a.name, witness_path(a)) }.join(', ').html_safe %>
+         <td><%= c.indictment_number %></td>
+         <td><%= c.status %></td>
+         <td><%= c.stage %></td>
+         <td><%= c.next_court_date %></td>
+         <td><%= c.next_court_part %></td>
+         <td><%= c.release_status %></td>
+         <td><%= c.arrest_number %></td>
+         <td><%= c.office %></td>
+         <td><%= c.opened_date %></td>
+         <td><%= c.closed_date %></td>
+         <td><%= c.disposition_date %></td>
+         <td><%= c.final_disposition %></td>
+         <td><%= c.city_disposition %></td>
+         <td><%= c.city_disposition_date %></td>
+         <td><%= c.initial_top_charge %></td>
+         <td><%= c.current_top_charge %></td>
+         <td><%= c.disposition_top_charge %></td>
+         <td><%= c.county %></td>
+         <td><%= c.top_sentence %></td>
+         <td><%= c.pro_bono %></td>
+         <td><%= c.case_type %></td>
+         <td><%= c.sentence %></td>
+         <td><%= c.law_firm_matter_number %></td>
+         <td><%= c.school_related %></td>
+         <td><%= c.warrant_number %></td>
+         <td><%= c.court_index %></td>
+         <td><%= c.probation_issue %></td>
+         <td><%= c.probation_request %></td>
+         <td><%= c.evaluation %></td>
+         <td><%= c.conflict_check %></td>
+         <td><%= c.court_forum %></td>
+         <td><%= c.practice %></td>
+
+         <td><%= link_to 'Edit', edit_case_path(c) %></td>
+         <td><%= link_to 'Delete', c, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+   <% end %>
+</table>

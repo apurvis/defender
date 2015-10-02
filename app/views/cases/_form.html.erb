@@ -35,20 +35,12 @@
       <%= f.text_field :stage %>
    </div>
    <div class='field'>
-      <%= f.label :next_court_date %><br/>
-      <%= date_field(:case, :next_court_date) %>
-   </div>
-   <div class='field'>
       <%= f.label :next_court_part %><br/>
       <%= f.text_field :next_court_part %>
    </div>
    <div class='field'>
       <%= f.label :release_status %><br/>
       <%= f.text_field :release_status %>
-   </div>
-   <div class='field'>
-      <%= f.label :new_york_state_id %><br/>
-      <%= f.text_field :new_york_state_id %>
    </div>
    <div class='field'>
       <%= f.label :arrest_number %><br/>
@@ -91,18 +83,6 @@
       <%= select(:case, :disposition_top_charge_id, Charge.all.map { |c| [c.name[0..50], c.id] } ) %>
    </div>
    <div class='field'>
-      <%= f.label :itype %><br/>
-      <%= f.text_field :itype %>
-   </div>
-   <div class='field'>
-      <%= f.label :dtype %><br/>
-      <%= f.text_field :dtype %>
-   </div>
-   <div class='field'>
-      <%= f.label :status_flag %><br/>
-      <%= f.text_field :status_flag %>
-   </div>
-   <div class='field'>
       <%= f.label :top_sentence %><br/>
       <%= f.text_field :top_sentence %>
    </div>
@@ -111,52 +91,16 @@
       <%= f.text_field :pro_bono %>
    </div>
    <div class='field'>
-      <%= f.label :lm_number %><br/>
-      <%= f.text_field :lm_number %>
-   </div>
-   <div class='field'>
       <%= f.label :case_type %><br/>
       <%= select(:case, :case_type_id, CaseType.all.map { |c| [c.name[0..50], c.id] } ) %>
-   </div>
-   <div class='field'>
-      <%= f.label :docket_plus %><br/>
-      <%= f.text_field :docket_plus %>
    </div>
    <div class='field'>
       <%= f.label :sentence %><br/>
       <%= f.text_field :sentence %>
    </div>
    <div class='field'>
-      <%= f.label :cab_number %><br/>
-      <%= f.text_field :cab_number %>
-   </div>
-   <div class='field'>
       <%= f.label :law_firm_matter_number %><br/>
       <%= f.text_field :law_firm_matter_number %>
-   </div>
-   <div class='field'>
-      <%= f.label :aid %><br/>
-      <%= f.text_field :aid %>
-   </div>
-   <div class='field'>
-      <%= f.label :dsp %><br/>
-      <%= f.text_field :dsp %>
-   </div>
-   <div class='field'>
-      <%= f.label :mica %><br/>
-      <%= f.text_field :mica %>
-   </div>
-   <div class='field'>
-      <%= f.label :k_calendar %><br/>
-      <%= f.text_field :k_calendar %>
-   </div>
-   <div class='field'>
-      <%= f.label :contested %><br/>
-      <%= f.text_field :contested %>
-   </div>
-   <div class='field'>
-      <%= f.label :board_case %><br/>
-      <%= f.text_field :board_case %>
    </div>
    <div class='field'>
       <%= f.label :school_related %><br/>
@@ -179,10 +123,6 @@
       <%= f.text_field :probation_request %>
    </div>
    <div class='field'>
-      <%= f.label :ati %><br/>
-      <%= f.text_field :ati %>
-   </div>
-   <div class='field'>
       <%= f.label :evaluation %><br/>
       <%= f.text_field :evaluation %>
    </div>
@@ -191,20 +131,12 @@
       <%= f.text_field :conflict_check %>
    </div>
    <div class='field'>
-      <%= f.label :start_workflow %><br/>
-      <%= f.text_field :start_workflow %>
-   </div>
-   <div class='field'>
       <%= f.label :court_forum %><br/>
       <%= f.text_field :court_forum %>
    </div>
    <div class='field'>
       <%= f.label :practice %><br/>
       <%= select(:case, :practice_id, Practice.all.map { |c| [c.name[0..50], c.id] } ) %>
-   </div>
-   <div class='field'>
-      <%= f.label :case %><br/>
-      <%= f.text_field :case %>
    </div>
 
    <div class='actions'>
