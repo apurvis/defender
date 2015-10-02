@@ -3,13 +3,21 @@ Rails.application.routes.draw do
   root to: 'visitors#index'
   devise_for :users
   resources :users
-
-  resources :attorneys
   resources :cases
   resources :charges
-  resources :defendants
-  resources :people
-  resources :people_cases
   resources :phone_numbers
   resources :witnesses
+
+  # People classes
+  resources :attorneys
+  resources :defendants
+  resources :judges
+  resources :people
+  resources :people_cases
+  resources :people_events
+
+  # Event classes
+  resources :events
+  resources :court_appearances
+  resources :investigations
 end

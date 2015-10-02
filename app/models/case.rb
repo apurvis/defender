@@ -2,6 +2,8 @@ class Case < ActiveRecord::Base
   belongs_to :user
   belongs_to :attorney
 
+  has_many :court_appearances, -> { order(:happened_at) }
+  has_many :events, -> { order(:happened_at) }
   has_many :people_cases
   has_many :people, through: :people_cases
 
@@ -32,11 +34,27 @@ class Case < ActiveRecord::Base
     people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Defendant'")
   end
 
+  def judges
+    people.where(type: 'Judge')
+  end
+
+  def judges_cases
+    people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Judge'")
+  end
+
   def witnesses
     people.where(type: 'Witness')
   end
 
   def witnesses_cases
     people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Witness'")
+  end
+
+  def formatted_name
+    "People v. #{defendants.join(', ')}"
+  end
+
+  def next_court_date
+    court_appearances.find { |ca| ca.happened_at >= Date.today }.try(:happened_at).try(:strftime, '%Y-%m_%d')
   end
 end

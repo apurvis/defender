@@ -1,0 +1,23 @@
+<table>
+   <tr>
+      <th>Type</th>
+      <th>Title</th>
+      <th>Time</th>
+      <th>Hearing Type</th>
+      <th>Comment</th>
+      <th>Edit</th>
+      <th>Delete</th>
+   </tr>
+
+   <% events.each do |e| %>
+      <tr>
+         <td><%= e.type %></td>
+         <td><%= e.title %></td>
+         <td><%= link_to(e.happened_at, e) %></td>
+         <td><%= e.is_a?(CourtAppearance) ? e.hearing_type : 'N/A' %></td>
+         <td><%= e.comment %></td>
+         <td><%= link_to 'Edit', edit_event_path(e) %></td>
+         <td><%= link_to 'Delete', e, confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+   <% end %>
+</table>

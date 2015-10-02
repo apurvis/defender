@@ -1,0 +1,2 @@
+class Investigation < Event
+end

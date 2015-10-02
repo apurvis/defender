@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150831034826) do
+ActiveRecord::Schema.define(version: 20151002104350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,8 @@ ActiveRecord::Schema.define(version: 20150831034826) do
     t.string   "indictment_number"
     t.string   "status"
     t.string   "stage"
-    t.date     "next_court_date"
     t.string   "next_court_part"
     t.string   "release_status"
-    t.string   "new_york_state_id"
     t.string   "arrest_number"
     t.integer  "office_id"
     t.date     "opened_date"
@@ -43,36 +41,21 @@ ActiveRecord::Schema.define(version: 20150831034826) do
     t.integer  "initial_top_charge_id"
     t.integer  "current_top_charge_id"
     t.integer  "disposition_top_charge_id"
-    t.string   "itype",                     limit: 1
-    t.string   "dtype",                     limit: 1
-    t.string   "status_flag"
     t.integer  "county_id"
     t.string   "top_sentence"
     t.boolean  "pro_bono"
-    t.string   "lm_number"
     t.integer  "case_type_id"
-    t.string   "docket_plus"
     t.string   "sentence"
-    t.string   "cab_number"
     t.string   "law_firm_matter_number"
-    t.boolean  "aid"
-    t.boolean  "dsp"
-    t.boolean  "mica"
-    t.boolean  "k_calendar"
-    t.boolean  "contested"
-    t.boolean  "board_case"
     t.boolean  "school_related"
     t.string   "warrant_number"
     t.string   "court_index"
     t.boolean  "probation_issue"
     t.boolean  "probation_request"
-    t.boolean  "ati"
     t.boolean  "evaluation"
     t.boolean  "conflict_check"
-    t.string   "start_workflow"
     t.string   "court_forum"
     t.integer  "practice_id"
-    t.string   "case"
     t.integer  "created_by_user_id"
     t.integer  "last_updated_by_user_id"
     t.integer  "user_id"
@@ -108,6 +91,19 @@ ActiveRecord::Schema.define(version: 20150831034826) do
   add_index "defendants_cases", ["case_id"], name: "index_defendants_cases_on_case_id", using: :btree
   add_index "defendants_cases", ["defendant_id"], name: "index_defendants_cases_on_defendant_id", using: :btree
 
+  create_table "events", force: :cascade do |t|
+    t.string   "type"
+    t.string   "title"
+    t.string   "hearing_type"
+    t.integer  "case_id"
+    t.text     "comment"
+    t.datetime "happened_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "events", ["case_id"], name: "index_events_on_case_id", using: :btree
+
   create_table "mailing_addresses", force: :cascade do |t|
     t.string   "address_line_1"
     t.string   "address_line_2"
@@ -141,6 +137,17 @@ ActiveRecord::Schema.define(version: 20150831034826) do
 
   add_index "people_cases", ["case_id"], name: "index_people_cases_on_case_id", using: :btree
   add_index "people_cases", ["person_id"], name: "index_people_cases_on_person_id", using: :btree
+
+  create_table "people_events", force: :cascade do |t|
+    t.integer  "person_id"
+    t.integer  "event_id"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "people_events", ["event_id"], name: "index_people_events_on_event_id", using: :btree
+  add_index "people_events", ["person_id"], name: "index_people_events_on_person_id", using: :btree
 
   create_table "people_mailing_addresses", force: :cascade do |t|
     t.integer  "person_id"
