@@ -7,6 +7,11 @@ class EventsController < ApplicationController
     @event = Event.where(id: params[:id]).first
   end
 
+  def edit
+    @event = Event.where(id: params[:id]).first
+    @case = @event.case
+  end
+
   def new
     @case = Case.where(id: params[:case_id]).first
     @event = Event.new
@@ -45,6 +50,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:type, :case_id, :happened_at, :comment)
+    params.require(:event).permit(:type, :case_id, :happened_at, :comment, :hearing_type)
   end
 end

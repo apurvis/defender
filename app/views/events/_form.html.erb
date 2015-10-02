@@ -12,13 +12,18 @@
    <% end %>
 
    <div class='field'>
-      <%= f.label :case %>: <%= link_to @case.formatted_name, case_path(@case) %>
+      <h2>Case: <%= link_to @case.formatted_name, case_path(@case) %></h2>
       <%= f.hidden_field :case_id, value: @case.id %>
    </div>
 
    <div class='field'>
       <%= f.label :type %><br />
       <%= select(:event, :type, ['CourtAppearance', 'Investigation']) %>
+   </div>
+
+   <div class='field'>
+     <%= f.label :hearing_type %>
+     <%= f.text_field :hearing_type %>
    </div>
 
    <div class='field'>
