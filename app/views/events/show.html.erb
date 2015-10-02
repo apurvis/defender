@@ -1,9 +1,9 @@
 <div class='basic_info'>
-   <h2><%= @event.class %></h2>
+   <h2><%= @event.class %> (<%= link_to 'edit', edit_event_path(@event) %>)</h2>
    <h2><%= link_to @event.case.formatted_name, @event.case %></h2>
    <h2><%= @event.happened_at.strftime('%Y-%m-%d %H:%M:%S') %>
    <h2>
-     <strong>Title:</strong> <%= @event.title %> (<%= link_to 'edit', edit_event_path(@event) %>)
+     <strong>Title:</strong> <%= @event.title %>
    </h2>
    <% if @event.is_a?(CourtAppearance) %>
       <strong>Hearing Type:</strong><%= @event.hearing_type %>

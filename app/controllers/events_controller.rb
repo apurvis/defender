@@ -50,6 +50,13 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:type, :case_id, :happened_at, :comment, :hearing_type)
+    puts "in params! #{params}"
+
+    event_params = params.require(:event).permit(:type, :case_id, :happened_at, :comment, :hearing_type, :title)
+    if params[:investigation]
+      event_params.merge(params.require(:investigation).permit(:type, :case_id, :happened_at, :comment, :hearing_type, :title))
+    elsif params[:court_appearance]
+      event_params.merge(params.require(:court_appearance).permit(:type, :case_id, :happened_at, :comment, :hearing_type, :title))
+    end
   end
 end
