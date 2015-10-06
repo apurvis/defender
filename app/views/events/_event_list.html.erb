@@ -17,7 +17,7 @@
          <td><%= e.is_a?(CourtAppearance) ? e.hearing_type : 'N/A' %></td>
          <td><%= e.comment %></td>
          <td><%= link_to 'Edit', edit_event_path(e) %></td>
-         <td><%= link_to 'Delete', e, confirm: 'Are you sure?', method: :delete %></td>
+         <td><%= link_to 'Delete', e, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
    <% end %>
 </table>

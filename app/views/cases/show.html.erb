@@ -7,6 +7,11 @@
    <%= render partial: 'cases_charges/charges_list', locals: { cases_charges: @case.cases_charges } %>
 </div>
 
+<div class='sub_basic_info'>
+   <h2>Defendants (<%= link_to('Add Defendant', new_people_case_path(case_id: @case.id, person_class: 'Defendant')) %>)</h2>
+   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defendants_cases } %>
+</div>
+
 <div class='court_people'>
    <div class='judges'>
       <h2>Judges (<%= link_to('Add Judge', new_people_case_path(case_id: @case.id, person_class: 'Judge')) %>)</h2>
@@ -24,11 +29,6 @@
          <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defenders_cases } %>
       </div>
    </div>
-</div>
-
-<div class='sub_basic_info'>
-   <h2>Defendants (<%= link_to('Add Defendant', new_people_case_path(case_id: @case.id, person_class: 'Defendant')) %>)</h2>
-   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defendants_cases } %>
 </div>
 
 <div class='sub_basic_info'>
