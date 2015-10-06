@@ -89,7 +89,20 @@ div.statute_list, div.scheduled_substances, div.amendments, div.comment, div.qui
 .charges {
    @extend .sub_basic_info;
    margin-top: 10px;
-   background-color:  #FFD1D1;
+   background-color: #D6F0FF;
+   width: 30%;
+   float: left;
+   clear: none;
+}
+
+.defendants {
+   @extend .sub_basic_info;
+   margin-top: 10px;
+   width: 69%;
+   float: left;
+   margin-left: 10px;
+   clear: none;
+   background-color: #D6F0FF;
 }
 
 .attorney_container {

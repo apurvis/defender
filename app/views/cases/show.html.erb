@@ -2,12 +2,13 @@
 
 <%= render partial: 'cases_list', locals: { cases: [@case] } %>
 
+
 <div class='charges'>
    <h2>Charges (<%= link_to('Add Charge', new_cases_charge_path(case_id: @case.id))%>)</h2>
    <%= render partial: 'cases_charges/charges_list', locals: { cases_charges: @case.cases_charges } %>
 </div>
 
-<div class='sub_basic_info'>
+<div class='defendants'>
    <h2>Defendants (<%= link_to('Add Defendant', new_people_case_path(case_id: @case.id, person_class: 'Defendant')) %>)</h2>
    <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defendants_cases } %>
 </div>
