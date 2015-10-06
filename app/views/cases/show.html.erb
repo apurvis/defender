@@ -2,24 +2,28 @@
 
 <%= render partial: 'cases_list', locals: { cases: [@case] } %>
 
-<div class='attorneys'>
-   <h2>Prosecutors (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
-   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.prosecutors_cases } %>
-</div>
+<div class='court_people'>
+   <div class='judges'>
+      <h2>Judges (<%= link_to('Add Judge', new_people_case_path(case_id: @case.id, person_class: 'Judge')) %>)</h2>
+      <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.judges_cases } %>
+   </div>
 
-<div class='attorneys'>
-   <h2>Defenders (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
-   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defenders_cases } %>
+   <div class='attorney_container'>
+      <div class='attorneys'>
+         <h2>Prosecutors (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
+         <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.prosecutors_cases } %>
+      </div>
+
+      <div class='attorneys'>
+         <h2>Defenders (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
+         <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defenders_cases } %>
+      </div>
+   </div>
 </div>
 
 <div class='sub_basic_info'>
    <h2>Defendants (<%= link_to('Add Defendant', new_people_case_path(case_id: @case.id, person_class: 'Defendant')) %>)</h2>
    <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defendants_cases } %>
-</div>
-
-<div class='sub_basic_info'>
-   <h2>Judges (<%= link_to('Add Judge', new_people_case_path(case_id: @case.id, person_class: 'Judge')) %>)</h2>
-   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.judges_cases } %>
 </div>
 
 <div class='sub_basic_info'>

@@ -79,56 +79,40 @@ div.statute_list, div.scheduled_substances, div.amendments, div.comment, div.qui
 }
 
 .sub_basic_info {
+   @extend .basic_info;
    background-color: #F0F0FF;
-   border: 1px solid black;
-   clear: both;
-   padding-left: 10px;
-   padding-bottom: 10px;
-   padding-right: 10px;
    margin-bottom: 5px;
    margin-top: 5px;
    width: 100%;
 }
 
+.attorney_container {
+   width: 65%;
+}
+
 .attorneys {
-   background-color: #F0F0FF;
-   border: 1px solid black;
-   padding-left: 10px;
-   padding-bottom: 10px;
-   padding-right: 10px;
-   margin-bottom: 5px;
-   margin-top: 5px;
-   margin-right: 5px;
-   width: 49%;
+   @extend .sub_basic_info;
+   clear: none;
+   margin-right: 10px;
+   margin-left: 10px;
+   width: 100%;
+}
+
+.judges {
+   @extend .sub_basic_info;
+   width: 30%;
+}
+
+.court_people {
 }
 
 div.cases {
    clear: both;
 }
 
-div.filter_notification {
-   color: red;
-   margin-top: 5px;
-   background-color: #FFFFFF;
-   border: 1px solid black;
-   clear: both;
-   padding-left: 10px;
-   padding-bottom: 10px;
-   padding-right: 10px;
-   float: center;
-   width: 70%;
-   text-align: center;
-}
-
 div.comments {
-   background-color: #F0F0FF;
+   @extend .sub_basic_info;
    margin-top: 10px;
-   border: 1px solid black;
-   clear: both;
-   padding-left: 10px;
-   padding-bottom: 10px;
-   padding-right: 10px;
-   width: 100%;
 }
 
 div.main_container {
