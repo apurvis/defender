@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :cases
+  resources :cases_charges
   resources :charges
   resources :phone_numbers
   resources :witnesses

@@ -6,6 +6,8 @@ class Case < ActiveRecord::Base
   has_many :events, -> { order(:happened_at) }
   has_many :people_cases
   has_many :people, through: :people_cases
+  has_many :cases_charges
+  has_many :charges, through: :cases_charges
 
   belongs_to :office
   belongs_to :county

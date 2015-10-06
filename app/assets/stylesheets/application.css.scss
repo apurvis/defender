@@ -86,6 +86,11 @@ div.statute_list, div.scheduled_substances, div.amendments, div.comment, div.qui
    width: 100%;
 }
 
+.charges {
+   @extend .sub_basic_info;
+   background-color:  #FFD1D1;
+}
+
 .attorney_container {
    width: 65%;
 }

@@ -7,6 +7,9 @@
       <th>Judge(s)</th>
       <th>Witness(es)</th>
       <th>Court Appearances</th>
+      <th>initial top charge</th>
+      <th>current top charge</th>
+      <th>disposition top charge</th>
       <th>Indictment Number</th>
       <th>status</th>
       <th>stage</th>
@@ -21,9 +24,6 @@
       <th>final disposition</th>
       <th>city disposition</th>
       <th>city disposition date</th>
-      <th>initial top charge</th>
-      <th>current top charge</th>
-      <th>disposition top charge</th>
       <th>county</th>
       <th>top sentence</th>
       <th>pro bono</th>
@@ -53,6 +53,9 @@
          <td><%= c.judges.map { |j| link_to(j.name, j) }.join(', ').html_safe %>
          <td><%= c.witnesses.map { |w| link_to(w.name, w) }.join(', ').html_safe %>
          <td><%= c.court_appearances.map { |ca| link_to(ca.formatted_name, ca) }.join(', ').html_safe %>
+         <td><%= c.initial_top_charge %></td>
+         <td><%= c.current_top_charge %></td>
+         <td><%= c.disposition_top_charge %></td>
          <td><%= c.indictment_number %></td>
          <td><%= c.status %></td>
          <td><%= c.stage %></td>
@@ -67,9 +70,6 @@
          <td><%= c.final_disposition %></td>
          <td><%= c.city_disposition %></td>
          <td><%= c.city_disposition_date %></td>
-         <td><%= c.initial_top_charge %></td>
-         <td><%= c.current_top_charge %></td>
-         <td><%= c.disposition_top_charge %></td>
          <td><%= c.county %></td>
          <td><%= c.top_sentence %></td>
          <td><%= c.pro_bono %></td>
@@ -87,7 +87,7 @@
          <td><%= c.practice %></td>
 
          <td><%= link_to 'Edit', edit_case_path(c) %></td>
-         <td><%= link_to 'Delete', c, confirm: 'Are you sure?', method: :delete %></td>
+         <td><%= link_to 'Delete', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
    <% end %>
 </table>

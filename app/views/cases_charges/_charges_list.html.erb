@@ -1,0 +1,15 @@
+<table>
+   <tr>
+      <th>Type</th>
+      <th>Name</th>
+      <th>Delete</th>
+   </tr>
+
+   <% cases_charges.each do |c| %>
+      <tr>
+         <td><%= c.charge.offense_type %></td>
+         <td><%= link_to(c.charge.name, charge_path(c.charge)) %></td>
+         <td><%= link_to 'Delete', c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+   <% end %>
+</table>

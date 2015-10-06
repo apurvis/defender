@@ -2,6 +2,11 @@
 
 <%= render partial: 'cases_list', locals: { cases: [@case] } %>
 
+<div class='charges'>
+   <h2>Charges (<%= link_to('Add Charge', new_cases_charge_path(case_id: @case.id))%>)</h2>
+   <%= render partial: 'cases_charges/charges_list', locals: { cases_charges: @case.cases_charges } %>
+</div>
+
 <div class='court_people'>
    <div class='judges'>
       <h2>Judges (<%= link_to('Add Judge', new_people_case_path(case_id: @case.id, person_class: 'Judge')) %>)</h2>
