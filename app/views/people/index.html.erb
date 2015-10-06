@@ -1,7 +1,3 @@
-<h1><%= @class_name.pluralize %> (<%= link_to "New #{@class_name}", self.send("new_#{@class_name.downcase}_path".to_sym) %>)</h1>
+<h1><%= @class_name.pluralize %> (<%= link_to "Add New #{@class_name}", self.send("new_#{@class_name.downcase}_path".to_sym) %>)</h1>
 
 <%= render partial: 'people_list', locals: { people: @people } %>
-
-<br />
-
-<%= link_to 'New Person', new_person_path %>

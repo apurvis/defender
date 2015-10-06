@@ -23,6 +23,20 @@ class PeopleCasesController < ApplicationController
     redirect_to @case
   end
 
+  def edit
+    @person_case = PeopleCase.where(id: params['id']).first
+  end
+
+  def update
+    @person_case = PeopleCase.where(id: params['id']).first
+
+    if @person_case.update(people_case_params)
+      redirect_to @person_case.case
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     person_case = PeopleCase.where(id: params[:id]).first
     @case = person_case.case
@@ -35,6 +49,6 @@ class PeopleCasesController < ApplicationController
   private
 
   def people_case_params
-    params.require(:people_case).permit(:person_id, :case_id)
+    params.require(:people_case).permit(:person_id, :case_id, :role, :comment)
   end
 end

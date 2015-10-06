@@ -9,12 +9,14 @@
    <h2>CASES</h2>
    <table>
       <tr>
+         <th>Case</th>
          <th>Docket Number</th>
          <th>Next Court Date</th>
       </tr>
       <% @person.cases.each do |c| %>
          <tr>
-            <td><%= link_to(c.docket_number, case_path(c)) %></td>
+            <td><%= link_to(c.formatted_name, c) %></td>
+            <td><%= link_to(c.docket_number, c) %></td>
             <td><%= c.next_court_date %></td>
          </tr>
       <% end %>

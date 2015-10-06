@@ -11,16 +11,27 @@
       </div>
    <% end %>
 
-   <h3>Adding <%= @person_class %> to <%= @case.docket_number %></h3>
+   <% if @case && @people %>
+      <%= f.hidden_field :case_id, value: @case.id %>
+
+      <div class='field'>
+         <%= f.label :name %><br />
+         <%= select(:people_case, :person_id, @people.map { |p| [p.name, p.id] }) %>
+      </div>
+   <% elsif @person_case %>
+      <h3>Editing <%= @person_case.person.name %>'s relation to <%= @person_case.case.formatted_name %></h3>
+   <% end %>
+
+   <% if @person_class == 'Attorney' || (@person_case && @person_case.person.is_a?(Attorney)) %>
+      <div class='field'>
+         <%= f.label :side %><br />
+         <%= select(:people_case, :role, ['Prosecution', 'Defense']) %><br />
+      </div>
+   <% end %>
 
    <div class='field'>
-      <%= f.label :name %><br />
-      <%= select(:people_case, :person_id, @people.map { |p| [p.name, p.id] }) %>
-   </div>
-
-   <div class='field'>
-      <%= f.label :case %><br />
-      <%= select(:people_case, :case_id, Case.all.map { |c| [c.docket_number, c.id] }) %><br />
+      <%= f.label :comment %><br />
+      <%= f.text_area :comment %><br />
    </div>
 
    <div class='field'>

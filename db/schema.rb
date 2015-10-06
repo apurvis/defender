@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002104350) do
+ActiveRecord::Schema.define(version: 20151006011546) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,8 @@ ActiveRecord::Schema.define(version: 20151002104350) do
     t.integer  "case_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "role"
+    t.text     "comment"
   end
 
   add_index "people_cases", ["case_id"], name: "index_people_cases_on_case_id", using: :btree

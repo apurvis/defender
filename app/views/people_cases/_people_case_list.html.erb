@@ -2,9 +2,14 @@
    <tr>
       <th>Type</th>
       <th>Name</th>
-      <% if people_cases.all? { |pc| pc.person.is_a?(Defendant) } %>
+      <% if !people_cases.empty? && people_cases.all? { |pc| pc.person.is_a?(Defendant) } %>
          <th>Immigration Status</th>
       <% end %>
+      <% if !people_cases.empty? && people_cases.all? { |pc| pc.person.is_a?(Attorney) } %>
+         <th>Side</th>
+      <% end %>
+      <th>Comment</th>
+      <th>Edit Link to Case</th>
       <th>Delete</th>
    </tr>
 
@@ -15,6 +20,11 @@
          <% if people_cases.all? { |pc| pc.person.is_a?(Defendant) } %>
             <th><%= pc.person.immigration_status%></th>
          <% end %>
+         <% if people_cases.all? { |pc| pc.person.is_a?(Attorney) } %>
+            <th><%= pc.role %></th>
+         <% end %>
+         <td><%= pc.comment %></td>
+         <td><%= link_to 'Edit Link to Case', edit_people_case_path(pc) %></td>
          <td><%= link_to 'Delete', pc, confirm: 'Are you sure?', method: :delete %></td>
       </tr>
    <% end %>
