@@ -11,7 +11,7 @@
 
    <% events.each do |e| %>
       <tr>
-         <td><%= e.type %></td>
+         <td class=<%= e.is_a?(CourtAppearance) ? "green_row" : '' %>><%= e.type %></td>
          <td><%= e.title %></td>
          <td><%= link_to(e.happened_at, e) %></td>
          <td><%= e.is_a?(CourtAppearance) ? e.hearing_type : 'N/A' %></td>
