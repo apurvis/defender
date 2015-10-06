@@ -11,14 +11,19 @@
       </div>
    <% end %>
 
-   <div class='field'>
-      <h2>Case: <%= link_to @case.formatted_name, case_path(@case) %></h2>
+   <% if @case %>
+      <div class='field'>
+         <h2>Case: <%= link_to @case.formatted_name, case_path(@case) %></h2>
+         <%= f.hidden_field :case_id, value: @case.id %>
+      </div>
+   <% elsif @event %>
+      <h2>Event for: <%= link_to @event.case.formatted_name, case_path(@event.case) %></h2>
       <%= f.hidden_field :case_id, value: @case.id %>
-   </div>
+   <% end %>
 
    <div class='field'>
       <%= f.label :type %><br />
-      <%= select(:event, :type, ['CourtAppearance', 'Investigation']) %>
+      <%= select(:event, :type, ['CourtAppearance', 'Investigation', 'Arrest']) %>
    </div>
 
    <div class='field'>
@@ -27,7 +32,7 @@
    </div>
 
    <div class='field'>
-     <%= f.label :hearing_type %>
+     <%= f.label :hearing_type %><br />
      <%= f.text_field :hearing_type %>
    </div>
 
@@ -38,7 +43,7 @@
 
    <div class='field'>
       <%= f.label :comment %><br />
-      <%= f.text_area :comment %><br />
+      <%= f.text_area(:comment, cols: '50', rows: '10') %>
    </div>
 
    <div class='field'>

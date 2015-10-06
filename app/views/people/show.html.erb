@@ -1,7 +1,8 @@
 <div class='basic_info'>
    <h2>
-     <strong>NAME:</strong> <%= @person.name %> (<%= link_to 'edit', edit_person_path(@person) %>)
+     <strong><%= @person.class %></strong> <%= @person.name %> (<%= link_to 'edit', edit_person_path(@person) %>)
    </h2>
+
    <%= render partial: 'phone_numbers/phone_number_list', locals: { numbers: @person.phone_numbers } %>
 </div>
 

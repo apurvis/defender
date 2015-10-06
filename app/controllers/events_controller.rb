@@ -19,9 +19,10 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @case = Case.where(id: event_params[:case_id]).first
 
     if @event.save
-      redirect_to @event
+      redirect_to @event.case
     else
       render 'new'
     end
@@ -39,24 +40,28 @@ class EventsController < ApplicationController
 
   def destroy
     event = Event.where(id: params[:id]).first
+
     if event.people.size > 0
-      redirect_to events_path, alert: "Cannot delete event #{event.id} which still has associated people."
+      redirect_to event.case, alert: "Cannot delete event #{event.id} which still has associated people."
     else
       event.destroy
-      redirect_to events_path, notice: "Event #{event.id} deleted."
+      redirect_to event.case, notice: "#{event.type} (#{event.hearing_type || event.title} on #{event.happened_at}) id #{event.id} deleted."
     end
   end
 
   private
 
   def event_params
-    puts "in params! #{params}"
+    common_params = [:type, :case_id, :happened_at, :comment, :title]
+    hearing_params = common_params + [:hearing_type]
+    local_event_params = params.require(:event).permit(*hearing_params)
 
-    event_params = params.require(:event).permit(:type, :case_id, :happened_at, :comment, :hearing_type, :title)
-    if params[:investigation]
-      event_params.merge(params.require(:investigation).permit(:type, :case_id, :happened_at, :comment, :hearing_type, :title))
-    elsif params[:court_appearance]
-      event_params.merge(params.require(:court_appearance).permit(:type, :case_id, :happened_at, :comment, :hearing_type, :title))
+    [:investigation, :court_appearance, :arrest].each do |subclass|
+      if params[subclass]
+        local_event_params.merge!(params.require(subclass).permit(*hearing_params))
+      end
     end
+
+    local_event_params
   end
 end

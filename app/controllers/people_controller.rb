@@ -52,6 +52,14 @@ class PeopleController < ApplicationController
   private
 
   def person_params
-    params.require(:person).permit(:name, :immigration_status, :type)
+    local_person_params = params.require(:person).permit(:name, :immigration_status, :type)
+
+    [:judge, :witness, :attorney].each do |subclass|
+      if params[subclass]
+        local_person_params.merge!(params.require(subclass).permit(:name, :immigration_status, :type))
+      end
+    end
+
+    local_person_params
   end
 end

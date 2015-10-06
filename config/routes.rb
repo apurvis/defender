@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   resources :events
   resources :court_appearances
   resources :investigations
+  resources :arrests
 end
