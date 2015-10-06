@@ -26,6 +26,22 @@ class Case < ActiveRecord::Base
     people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Attorney'")
   end
 
+  def prosecutors_cases
+    attorneys_cases.where(role: 'Prosecution')
+  end
+
+  def defenders_cases
+    attorneys_cases.where(role: 'Defense')
+  end
+
+  def prosecutors
+    prosecutors_cases.map { |p| p.person }
+  end
+
+  def defenders
+    defenders_cases.map { |d| d.person }
+  end
+
   def defendants
     people.where(type: 'Defendant')
   end

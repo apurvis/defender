@@ -1,7 +1,8 @@
 <table>
    <tr>
       <th>Docket Number</th>
-      <th>Attorney(s)</th>
+      <th>Prosecutor(s)</th>
+      <th>Defender</th>
       <th>Defendant(s)</th>
       <th>Judge(s)</th>
       <th>Witness(es)</th>
@@ -46,7 +47,8 @@
    <% cases.each do |c| %>
       <tr>
          <td><%= link_to(c.docket_number, case_path(c)) %></td>
-         <td><%= c.attorneys.map { |a| link_to(a.name, a) }.join(', ').html_safe %>
+         <td><%= c.prosecutors.map { |a| link_to(a.name, a) }.join(', ').html_safe %>
+         <td><%= c.defenders.map { |a| link_to(a.name, a) }.join(', ').html_safe %>
          <td><%= c.defendants.map { |d| link_to(d.name, d) }.join(', ').html_safe %>
          <td><%= c.judges.map { |j| link_to(j.name, j) }.join(', ').html_safe %>
          <td><%= c.witnesses.map { |w| link_to(w.name, w) }.join(', ').html_safe %>

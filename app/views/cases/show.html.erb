@@ -1,10 +1,15 @@
-<h2><%= @case.formatted_name %> (<%= link_to 'Edit', edit_case_path(@case) %>)</h2>
+<h1><%= @case.formatted_name %> (<%= link_to 'Edit', edit_case_path(@case) %>)</h1>
 
 <%= render partial: 'cases_list', locals: { cases: [@case] } %>
 
-<div class='sub_basic_info'>
-   <h2>Attorneys (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
-   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.attorneys_cases } %>
+<div class='attorneys'>
+   <h2>Prosecutors (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
+   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.prosecutors_cases } %>
+</div>
+
+<div class='attorneys'>
+   <h2>Defenders (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
+   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defenders_cases } %>
 </div>
 
 <div class='sub_basic_info'>
@@ -26,4 +31,3 @@
    <h2>Events (<%= link_to('Add Event', new_event_path(case_id: @case.id)) %>)</h2>
    <%= render partial: 'events/event_list', locals: { events: @case.events } %>
 </div>
-
