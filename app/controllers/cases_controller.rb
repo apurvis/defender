@@ -19,6 +19,7 @@ class CasesController < ApplicationController
 
   def create
     @case = Case.new(case_params)
+
     if @case.save
       redirect_to @case
     else
