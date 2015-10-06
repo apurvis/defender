@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :cases
   resources :cases_charges
   resources :charges
+  resources :offices
   resources :phone_numbers
   resources :witnesses
 

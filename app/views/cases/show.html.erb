@@ -38,6 +38,6 @@
 </div>
 
 <div class='sub_basic_info'>
-   <h2>Events (<%= link_to('Add Event', new_event_path(case_id: @case.id)) %>)</h2>
+   <h2>Timeline (<%= link_to('Add Event', new_event_path(case_id: @case.id)) %>)</h2>
    <%= render partial: 'events/event_list', locals: { events: @case.events } %>
 </div>

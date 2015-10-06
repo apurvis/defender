@@ -1,0 +1,19 @@
+<h2>Offices (<%= link_to('Add Office', new_office_path) %>)</h2>
+
+<table>
+   <tr>
+      <th>Name</th>
+      <th>Caseload</th>
+      <th>Edit</th>
+      <th>Delete</th>
+   </tr>
+
+   <% @offices.each do |o| %>
+      <tr>
+         <td><%= o.name %></td>
+         <td><%= o.cases.size %> Cases</td>
+         <td><%= link_to 'Edit', edit_office_path(o) %></td>
+         <td><%= link_to 'Delete', o, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+   <% end %>
+</table>
