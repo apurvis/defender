@@ -21,6 +21,11 @@ class PeopleCasesController < ApplicationController
     redirect_to @case
   end
 
+  def show
+    @person_case = PeopleCase.where(id: params['id']).first
+    redirect_to @person_case.person
+  end
+
   def edit
     @person_case = PeopleCase.where(id: params['id']).first
   end
