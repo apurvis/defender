@@ -1,7 +1,7 @@
 Defender
 ================
 
-Basic rails app for public defender case management.
+Basic rails app for criminal defense case management.
 
 # Basic Workflow
 
