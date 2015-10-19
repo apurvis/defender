@@ -1,6 +1,7 @@
 <%# add navigation links to this file %>
 <% if user_signed_in? %>
-   <li><%= link_to 'Attorneys', attorneys_path %></li>
+   <li><%= link_to 'Prosecutors', prosecuting_attorneys_path %></li>
+   <li><%= link_to 'Defense Attorneys', defense_attorneys_path %></li>
    <li><%= link_to 'Defendants', defendants_path %></li>
    <li><%= link_to 'Judges', judges_path %></li>
    <li><%= link_to 'Witnesses', witnesses_path %></li>

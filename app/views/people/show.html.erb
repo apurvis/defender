@@ -1,6 +1,6 @@
 <div class='basic_info'>
    <h2>
-     <strong><%= @person.class %></strong> <%= @person.name %> (<%= link_to 'edit', edit_person_path(@person) %>)
+     <strong><%= @person.name %></strong> (<%= link_to 'edit', edit_person_path(@person) %>)
    </h2>
 
    <%= render partial: 'phone_numbers/phone_number_list', locals: { numbers: @person.phone_numbers } %>
@@ -10,15 +10,17 @@
    <h2>CASES</h2>
    <table>
       <tr>
+         <th>Role</th>
          <th>Case</th>
          <th>Docket Number</th>
          <th>Next Court Date</th>
       </tr>
-      <% @person.cases.each do |c| %>
+      <% @person.people_cases.each do |pc| %>
          <tr>
-            <td><%= link_to(c.formatted_name, c) %></td>
-            <td><%= link_to(c.docket_number, c) %></td>
-            <td><%= c.next_court_date %></td>
+            <td><%= pc.class.to_s %></td>
+            <td><%= link_to(pc.case.formatted_name, pc.case) %></td>
+            <td><%= link_to(pc.case.docket_number, pc.case) %></td>
+            <td><%= pc.case.next_court_date %></td>
          </tr>
       <% end %>
    </table>

@@ -12,6 +12,7 @@
    <% end %>
 
    <%= f.hidden_field :case_id, value: @case.id %>
+
    <div class='field'>
       <%= f.label :charge %><br />
       <%= select(:cases_charge, :charge_id, @charges.map { |c| [c.name[0..50], c.id] } ) %>

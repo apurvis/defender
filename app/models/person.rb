@@ -11,6 +11,11 @@ class Person < ActiveRecord::Base
     mailing_addresses.last
   end
 
+  def most_recent_role
+    role = people_cases.order('created_at DESC').first
+    role ? role.type : 'Unknown'
+  end
+
   def to_s
     name
   end

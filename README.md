@@ -30,3 +30,31 @@ user.role = 'admin'
 user.save
 ```
 
+# Data Model
+
+## Cases
+
+Has basic information about the case (e.g. its docket number, district, etc.) and manages links between all the participants (attorneys, defendants, witnesses, judges, etc.).
+
+## People
+
+Self explanatory.  Have phone numbers, addresses, etc.
+
+## PeopleCases
+
+The links between people and cases.  This is where information about HOW a `Person` relates to a `Case` is encoded - for instance the fact that John is the `Judge`, or Jane is the `Witness`, or Jim is the `Defendant` all would be encoded at the `PeopleCase` level.  This allows a single person to play multiple roles in different cases.
+
+### PeopleCase Subclasses
+
+The possible ways a person can relate to a case are:
+
+* `Judge
+* `DefenseAttorney`
+* `ProsecutingAttorney`
+* `Complainant`
+* `Defendant`
+* `Witness`
+
+## Charges
+
+There is a basic `Charge` class containing the name of the charge (e.g. "Robbery").  Charges are attached to `Defendant`s within a `Case`.

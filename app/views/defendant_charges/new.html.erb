@@ -1,0 +1,26 @@
+<h1>Adding Charge to Defendant <%= @defendant.person.name%> in <%= @defendant.case.formatted_name %></h1>
+
+<%= form_for(@defendant_charge) do |f| %>
+   <% if @defendant_charge.errors.any? %>
+      <div id='errorExplanation'>
+         <h2><%= pluralize(@defendant_charge.errors.count, 'error') %> prohibited this charge from being saved:</h2>
+
+         <ul>
+            <% @defendant_charge.errors.full_messages.each do |msg| %>
+               <li><%= msg %></li>
+            <% end %>
+         </ul>
+      </div>
+   <% end %>
+
+   <%= f.hidden_field :defendant_id, value: @defendant.id %>
+
+   <div class='field'>
+      <%= f.label :charge %><br />
+      <%= select(:defendant_charge, :charge_id, @charges.map { |c| [c.name[0..50], c.id] } ) %>
+   </div>
+
+   <div class='field'>
+      <%= f.submit %>
+   </div>
+<% end %>

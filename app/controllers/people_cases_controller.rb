@@ -1,23 +1,21 @@
 class PeopleCasesController < ApplicationController
   def new
     @case = Case.find_by_id(params[:case_id])
-    @person_case = PeopleCase.new
-
-    if params[:person_class]
-      @person_class = params[:person_class]
-      @people = params[:person_class].safe_constantize.all
-    else
-      flash.alert = "No person class provided"
-      redirect_to cases_path
-    end
+    @person_case = params[:person_class].safe_constantize.new
+    @people = Person.all
   end
 
   def create
     @case = Case.find_by_id(people_case_params[:case_id])
-    @person_case = PeopleCase.new(people_case_params)
+    PeopleCase.subclasses.map { |c| c.to_s.underscore }.each do |subclass|
+      if params[subclass]
+        @person_case = subclass.to_s.camelcase.safe_constantize.new(people_case_params)
+        break
+      end
+    end
 
     unless @person_case.save
-      flash.alert = "Failed to link to case"
+      flash.alert = 'Failed to link to case'
     end
 
     redirect_to @case
@@ -49,6 +47,14 @@ class PeopleCasesController < ApplicationController
   private
 
   def people_case_params
-    params.require(:people_case).permit(:person_id, :case_id, :role, :comment)
+    local_params = params.require(:people_case).permit(:person_id, :case_id, :comment)
+
+    PeopleCase.subclasses.map { |c| c.to_s.underscore }.each do |subclass|
+      if params[subclass]
+        local_params.merge!(params.require(subclass).permit(:person_id, :case_id, :comment))
+      end
+    end
+
+    local_params
   end
 end

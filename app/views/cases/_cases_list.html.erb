@@ -4,12 +4,10 @@
       <th>Prosecutor(s)</th>
       <th>Defender</th>
       <th>Defendant(s)</th>
+      <th>Charge(s)</th>
       <th>Judge(s)</th>
       <th>Witness(es)</th>
       <th>Court Appearances</th>
-      <th>initial top charge</th>
-      <th>current top charge</th>
-      <th>disposition top charge</th>
       <th>Indictment Number</th>
       <th>status</th>
       <th>stage</th>
@@ -47,15 +45,13 @@
    <% cases.each do |c| %>
       <tr>
          <td><%= link_to(c.docket_number, case_path(c)) %></td>
-         <td><%= c.prosecutors.map { |a| link_to(a.name, a) }.join(', ').html_safe %>
-         <td><%= c.defenders.map { |a| link_to(a.name, a) }.join(', ').html_safe %>
-         <td><%= c.defendants.map { |d| link_to(d.name, d) }.join(', ').html_safe %>
-         <td><%= c.judges.map { |j| link_to(j.name, j) }.join(', ').html_safe %>
-         <td><%= c.witnesses.map { |w| link_to(w.name, w) }.join(', ').html_safe %>
+         <td><%= c.prosecuting_attorneys.map { |a| link_to(a.person.name, a) }.join(', ').html_safe %>
+         <td><%= c.defense_attorneys.map { |a| link_to(a.person.name, a) }.join(', ').html_safe %>
+         <td><%= c.defendants.map { |d| link_to(d.person.name, d) }.join(', ').html_safe %>
+         <td><%= c.defendants.map { |d| d.defendant_charges }.flatten.map { |dc| link_to(dc.charge.name, dc.charge) }.join(', ').html_safe %>
+         <td><%= c.judges.map { |j| link_to(j.person.name, j) }.join(', ').html_safe %>
+         <td><%= c.witnesses.map { |w| link_to(w.person.name, w) }.join(', ').html_safe %>
          <td><%= c.court_appearances.map { |ca| link_to(ca.formatted_name, ca) }.join(', ').html_safe %>
-         <td><%= c.initial_top_charge %></td>
-         <td><%= c.current_top_charge %></td>
-         <td><%= c.disposition_top_charge %></td>
          <td><%= c.indictment_number %></td>
          <td><%= c.status %></td>
          <td><%= c.stage %></td>

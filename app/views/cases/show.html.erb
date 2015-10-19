@@ -3,38 +3,38 @@
 <%= render partial: 'cases_list', locals: { cases: [@case] } %>
 
 
-<div class='charges'>
-   <h2>Charges (<%= link_to('Add Charge', new_cases_charge_path(case_id: @case.id))%>)</h2>
-   <%= render partial: 'cases_charges/charges_list', locals: { cases_charges: @case.cases_charges } %>
+<div class='defendants'>
+   <h2>Complainants (<%= link_to('Add Complainant', new_people_case_path(case_id: @case.id, person_class: 'Complainant')) %>)</h2>
+   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.complainants } %>
 </div>
 
 <div class='defendants'>
    <h2>Defendants (<%= link_to('Add Defendant', new_people_case_path(case_id: @case.id, person_class: 'Defendant')) %>)</h2>
-   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defendants_cases } %>
+   <%= render partial: 'defendants/defendant_list', locals: { people_cases: @case.defendants } %>
+</div>
+
+<div class='defendants'>
+   <h2>Witnesses (<%= link_to('Add Witness', new_people_case_path(case_id: @case.id, person_class: 'Witness')) %>)</h2>
+   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.witnesses } %>
 </div>
 
 <div class='court_people'>
    <div class='judges'>
       <h2>Judges (<%= link_to('Add Judge', new_people_case_path(case_id: @case.id, person_class: 'Judge')) %>)</h2>
-      <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.judges_cases } %>
+      <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.judges } %>
    </div>
 
    <div class='attorney_container'>
       <div class='attorneys'>
-         <h2>Prosecutors (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
-         <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.prosecutors_cases } %>
+         <h2>Prosecutors (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'ProsecutingAttorney')) %>)</h2>
+         <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.prosecuting_attorneys } %>
       </div>
 
       <div class='attorneys'>
-         <h2>Defenders (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'Attorney')) %>)</h2>
-         <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defenders_cases } %>
+         <h2>Defenders (<%= link_to('Add Attorney', new_people_case_path(case_id: @case.id, person_class: 'DefenseAttorney')) %>)</h2>
+         <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.defense_attorneys } %>
       </div>
    </div>
-</div>
-
-<div class='sub_basic_info'>
-   <h2>Witnesses (<%= link_to('Add Witness', new_people_case_path(case_id: @case.id, person_class: 'Witness')) %>)</h2>
-   <%= render partial: 'people_cases/people_case_list', locals: { people_cases: @case.witnesses_cases } %>
 </div>
 
 <div class='sub_basic_info'>

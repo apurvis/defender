@@ -1,10 +1,6 @@
-class WitnessesController < PeopleController
+class WitnessesController < PeopleCasesController
   def index
     @class_name = 'Witness'
-    @people = Witness.all
-  end
-
-  def new
-    @person = Witness.new
+    @people = Witness.all.map { |w| w.person }
   end
 end

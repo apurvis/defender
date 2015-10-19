@@ -71,18 +71,6 @@
       <%= date_field(:case, :city_disposition_date) %>
    </div>
    <div class='field'>
-      <%= f.label :initial_top_charge %><br/>
-      <%= select(:case, :initial_top_charge_id, Charge.all.map { |c| [c.name[0..50], c.id] } ) %>
-   </div>
-   <div class='field'>
-      <%= f.label :current_top_charge %><br/>
-      <%= select(:case, :current_top_charge_id, Charge.all.map { |c| [c.name[0..50], c.id] } ) %>
-   </div>
-   <div class='field'>
-      <%= f.label :disposition_top_charge %><br/>
-      <%= select(:case, :disposition_top_charge_id, Charge.all.map { |c| [c.name[0..50], c.id] } ) %>
-   </div>
-   <div class='field'>
       <%= f.label :top_sentence %><br/>
       <%= f.text_field :top_sentence %>
    </div>

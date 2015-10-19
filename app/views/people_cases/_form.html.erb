@@ -15,14 +15,14 @@
       <%= f.hidden_field :case_id, value: @case.id %>
 
       <div class='field'>
-         <%= f.label :name %><br />
+         <%= f.label :person %><br />
          <%= select(:people_case, :person_id, @people.map { |p| [p.name, p.id] }) %>
       </div>
    <% elsif @person_case %>
       <h3>Editing <%= @person_case.person.name %>'s relation to <%= @person_case.case.formatted_name %></h3>
    <% end %>
 
-   <% if @person_class == 'Attorney' || (@person_case && @person_case.person.is_a?(Attorney)) %>
+   <% if @person_class == 'Attorney' || (@person_case && @person_case.is_a?(Attorney)) %>
       <div class='field'>
          <%= f.label :side %><br />
          <%= select(:people_case, :role, ['Prosecution', 'Defense']) %><br />

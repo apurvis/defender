@@ -1,0 +1,2 @@
+class DefenseAttorney < PeopleCase
+end

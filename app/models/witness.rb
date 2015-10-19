@@ -1,2 +1,2 @@
-class Witness < Person
+class Witness < PeopleCase
 end

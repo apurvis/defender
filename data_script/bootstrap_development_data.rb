@@ -26,14 +26,15 @@ def create_offices
   main_office.save!
 end
 
-def create_attorneys
-  attorney = Attorney.new(name: 'John Q. Public')
-  attorney.save
-end
-
-def create_defendants
-  Defendant.create(name: "James O\'Fender")
-  Defendant.create(name: "Pug I. Listic", immigration_status: 'good')
+def create_people
+  Person.create(name: 'Learned Hand')
+  Person.create(name: 'Benjamin West')
+  Person.create(name: 'John Q. Public')
+  Person.create(name: "James O\'Fender")
+  Person.create(name: 'Stabby McStabberson')
+  Person.create(name: 'Eesaw Sumthin')
+  Person.create(name: 'Pug I. Listic')
+  Person.create(name: 'Bramford L. Chadley, III')
 end
 
 def create_charges
@@ -42,13 +43,19 @@ def create_charges
   Charge.create(name: 'Robbery', offense_type: 'Felony')
 end
 
-def create_witnesses
-  Witness.create(name: 'Eesaw Sumthin')
+def create_cases
+  c = Case.create(docket_number: 'DOCKET01')
+  Judge.create(case_id: c.id, person: Person.find_by_name('Learned Hand'))
+  Witness.create(case_id: c.id, person: Person.find_by_name('Eesaw Sumthin'))
+  Complainant.create(case_id: c.id, person: Person.find_by_name('John Q. Public'))
+  Defendant.create(case_id: c.id, person: Person.find_by_name("James O\'Fender"))
+  Defendant.create(case_id: c.id, person: Person.find_by_name("Pug I. Listic"))
+  ProsecutingAttorney.create(case_id: c.id, person: Person.find_by_name("Bramford L. Chadley, III"))
+  DefenseAttorney.create(case_id: c.id, person: Person.find_by_name("Benjamin West"))
 end
 
 create_counties
 create_offices
-create_attorneys
-create_defendants
+create_people
 create_charges
-create_witnesses
+create_cases
