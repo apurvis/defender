@@ -4,7 +4,7 @@
       <th>Name</th>
       <th>Charges</th>
       <th>Comment</th>
-      <th>Edit Link to Case</th>
+      <th>Edit</th>
       <th>Delete</th>
    </tr>
 
@@ -12,9 +12,19 @@
       <tr>
          <td><%= pc.type %></td>
          <td><%= link_to(pc.person.name, pc.person) %></td>
-         <td>
-            <%= pc.defendant_charges.map { |dc| link_to(dc.charge.name, dc.charge) }.join(', ').html_safe %>
-            <%= link_to('(Add Charge)', new_defendant_charge_path(defendant_id: pc.id)) %>
+         <td class='contains_table'>
+            <table class='inner_table'>
+               <% pc.defendant_charges.each do |dc| %>
+                  <tr>
+                     <td><%= link_to(dc.charge.name, dc.charge) %></td>
+                     <td><%= link_to 'Remove Charge', dc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  </tr>
+               <% end %>
+               <tr>
+                  <td><%= link_to('(Add Charge)', new_defendant_charge_path(defendant_id: pc.id)) %></td>
+                  <td></td>
+               </tr>
+            </table>
          </td>
          <td><%= pc.comment %></td>
          <td><%= link_to 'Edit Link to Case', edit_people_case_path(pc) %></td>

@@ -38,9 +38,15 @@ class PeopleCasesController < ApplicationController
   def destroy
     person_case = PeopleCase.where(id: params[:id]).first
     @case = person_case.case
-    notice = "Removed #{person_case.person.type} #{person_case.person.name} from Docket Number #{person_case.case.docket_number}"
-    person_case.destroy
-    flash.notice = notice
+
+    if person_case.is_a?(Defendant) && person_case.defendant_charges.size > 0
+      flash.alert = "Cannot delete Defendant who still has charges! (Remove all charges first)."
+    else
+      notice = "Removed #{person_case.class} #{person_case.person.name} from Docket Number #{person_case.case.docket_number}"
+      person_case.destroy
+      flash.notice = notice
+    end
+
     redirect_to @case
   end
 

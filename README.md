@@ -48,7 +48,7 @@ The links between people and cases.  This is where information about HOW a `Pers
 
 The possible ways a person can relate to a case are:
 
-* `Judge
+* `Judge`
 * `DefenseAttorney`
 * `ProsecutingAttorney`
 * `Complainant`
@@ -57,4 +57,4 @@ The possible ways a person can relate to a case are:
 
 ## Charges
 
-There is a basic `Charge` class containing the name of the charge (e.g. "Robbery").  Charges are attached to `Defendant`s within a `Case`.
+There is a basic `Charge` class containing the name of the charge (e.g. "Robbery") and its type (e.g. "Misdemeanor").  Charges are attached to `Defendants` within a `Case`.

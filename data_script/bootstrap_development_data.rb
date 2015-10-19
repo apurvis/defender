@@ -45,14 +45,29 @@ end
 
 def create_cases
   c = Case.create(docket_number: 'DOCKET01')
+
+  # People
   Judge.create(case_id: c.id, person: Person.find_by_name('Learned Hand'))
   Witness.create(case_id: c.id, person: Person.find_by_name('Eesaw Sumthin'))
   Complainant.create(case_id: c.id, person: Person.find_by_name('John Q. Public'))
-  Defendant.create(case_id: c.id, person: Person.find_by_name("James O\'Fender"))
-  Defendant.create(case_id: c.id, person: Person.find_by_name("Pug I. Listic"))
   ProsecutingAttorney.create(case_id: c.id, person: Person.find_by_name("Bramford L. Chadley, III"))
   DefenseAttorney.create(case_id: c.id, person: Person.find_by_name("Benjamin West"))
+  defendants = [
+    Defendant.create(case_id: c.id, person: Person.find_by_name("James O\'Fender")),
+    Defendant.create(case_id: c.id, person: Person.find_by_name("Pug I. Listic"))
+  ]
+
+  # Charges
+  DefendantCharge.create(defendant: defendants[0], charge: Charge.first)
+  DefendantCharge.create(defendant: defendants[1], charge: Charge.last)
+
+  # Events
+  Arrest.create(case_id: c.id, happened_at: Time.now.utc - 1.year)
+  CourtAppearance.create(case_id: c.id, happened_at: Time.now.utc - 6.months, hearing_type: 'Arraignment')
+  Investigation.create(case_id: c.id, happened_at: Time.now.utc - 3.months)
+  CourtAppearance.create(case_id: c.id, happened_at: Time.now.utc + 1.year, hearing_type: 'Trial')
 end
+
 
 create_counties
 create_offices
