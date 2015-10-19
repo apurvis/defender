@@ -1,0 +1,2 @@
+class ProsecutingAttorney < PeopleCase
+end

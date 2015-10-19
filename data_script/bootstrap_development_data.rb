@@ -26,14 +26,15 @@ def create_offices
   main_office.save!
 end
 
-def create_attorneys
-  attorney = Attorney.new(name: 'John Q. Public')
-  attorney.save
-end
-
-def create_defendants
-  Defendant.create(name: "James O\'Fender")
-  Defendant.create(name: "Pug I. Listic", immigration_status: 'good')
+def create_people
+  Person.create(name: 'Learned Hand')
+  Person.create(name: 'Benjamin West')
+  Person.create(name: 'John Q. Public')
+  Person.create(name: "James O\'Fender")
+  Person.create(name: 'Stabby McStabberson')
+  Person.create(name: 'Eesaw Sumthin')
+  Person.create(name: 'Pug I. Listic')
+  Person.create(name: 'Bramford L. Chadley, III')
 end
 
 def create_charges
@@ -42,13 +43,34 @@ def create_charges
   Charge.create(name: 'Robbery', offense_type: 'Felony')
 end
 
-def create_witnesses
-  Witness.create(name: 'Eesaw Sumthin')
+def create_cases
+  c = Case.create(docket_number: 'DOCKET01')
+
+  # People
+  Judge.create(case_id: c.id, person: Person.find_by_name('Learned Hand'))
+  Witness.create(case_id: c.id, person: Person.find_by_name('Eesaw Sumthin'))
+  Complainant.create(case_id: c.id, person: Person.find_by_name('John Q. Public'))
+  ProsecutingAttorney.create(case_id: c.id, person: Person.find_by_name("Bramford L. Chadley, III"))
+  DefenseAttorney.create(case_id: c.id, person: Person.find_by_name("Benjamin West"))
+  defendants = [
+    Defendant.create(case_id: c.id, person: Person.find_by_name("James O\'Fender")),
+    Defendant.create(case_id: c.id, person: Person.find_by_name("Pug I. Listic"))
+  ]
+
+  # Charges
+  DefendantCharge.create(defendant: defendants[0], charge: Charge.first)
+  DefendantCharge.create(defendant: defendants[1], charge: Charge.last)
+
+  # Events
+  Arrest.create(case_id: c.id, happened_at: Time.now.utc - 1.year)
+  CourtAppearance.create(case_id: c.id, happened_at: Time.now.utc - 6.months, hearing_type: 'Arraignment')
+  Investigation.create(case_id: c.id, happened_at: Time.now.utc - 3.months)
+  CourtAppearance.create(case_id: c.id, happened_at: Time.now.utc + 1.year, hearing_type: 'Trial')
 end
+
 
 create_counties
 create_offices
-create_attorneys
-create_defendants
+create_people
 create_charges
-create_witnesses
+create_cases

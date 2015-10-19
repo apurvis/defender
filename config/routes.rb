@@ -5,14 +5,16 @@ Rails.application.routes.draw do
 
   resources :users
   resources :cases
-  resources :cases_charges
+  resources :defendant_charges
   resources :charges
   resources :offices
   resources :phone_numbers
   resources :witnesses
 
   # People classes
-  resources :attorneys
+  resources :defense_attorneys
+  resources :prosecuting_attorneys
+  resources :complainants
   resources :defendants
   resources :judges
   resources :people

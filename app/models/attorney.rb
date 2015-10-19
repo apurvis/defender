@@ -1,2 +1,2 @@
-class Attorney < Person
+class Attorney < PeopleCase
 end

@@ -2,27 +2,15 @@
    <tr>
       <th>Type</th>
       <th>Name</th>
-      <% if !people_cases.empty? && people_cases.all? { |pc| pc.person.is_a?(Defendant) } %>
-         <th>Immigration Status</th>
-      <% end %>
-      <% if !people_cases.empty? && people_cases.all? { |pc| pc.person.is_a?(Attorney) } %>
-         <th>Side</th>
-      <% end %>
       <th>Comment</th>
-      <th>Edit Link to Case</th>
+      <th>Edit</th>
       <th>Delete</th>
    </tr>
 
    <% people_cases.each do |pc| %>
       <tr>
-         <td><%= pc.person.type %></td>
+         <td><%= pc.type %></td>
          <td><%= link_to(pc.person.name, pc.person) %></td>
-         <% if people_cases.all? { |pc| pc.person.is_a?(Defendant) } %>
-            <th><%= pc.person.immigration_status%></th>
-         <% end %>
-         <% if people_cases.all? { |pc| pc.person.is_a?(Attorney) } %>
-            <th><%= pc.role %></th>
-         <% end %>
          <td><%= pc.comment %></td>
          <td><%= link_to 'Edit Link to Case', edit_people_case_path(pc) %></td>
          <td><%= link_to 'Delete', pc, method: :delete, data: { confirm: 'Are you sure?' } %></td>

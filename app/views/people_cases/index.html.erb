@@ -1,6 +1,5 @@
 <table>
    <tr>
-      <th>Most Recent Role</th>
       <th>Name</th>
       <th>Edit</th>
       <th>Delete</th>
@@ -8,7 +7,6 @@
 
    <% @people.each do |p| %>
       <tr>
-         <td><%= p.most_recent_role %></td>
          <td><%= link_to(p.name, p) %></td>
          <td><%= link_to 'Edit', edit_person_path(p) %></td>
          <td><%= link_to 'Delete', p, method: :delete, data: { confirm: 'Are you sure?' } %></td>

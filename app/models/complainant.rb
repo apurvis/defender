@@ -1,0 +1,2 @@
+class Complainant < PeopleCase
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006083233) do
+ActiveRecord::Schema.define(version: 20151019091004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20151006083233) do
   end
 
   create_table "cases", force: :cascade do |t|
-    t.integer  "attorney_id"
     t.string   "docket_number"
     t.string   "indictment_number"
     t.string   "status"
@@ -38,9 +37,6 @@ ActiveRecord::Schema.define(version: 20151006083233) do
     t.string   "final_disposition"
     t.string   "city_disposition"
     t.date     "city_disposition_date"
-    t.integer  "initial_top_charge_id"
-    t.integer  "current_top_charge_id"
-    t.integer  "disposition_top_charge_id"
     t.integer  "county_id"
     t.string   "top_sentence"
     t.boolean  "pro_bono"
@@ -63,19 +59,7 @@ ActiveRecord::Schema.define(version: 20151006083233) do
     t.datetime "updated_at"
   end
 
-  add_index "cases", ["attorney_id"], name: "index_cases_on_attorney_id", using: :btree
   add_index "cases", ["docket_number"], name: "index_cases_on_docket_number", unique: true, using: :btree
-
-  create_table "cases_charges", force: :cascade do |t|
-    t.integer  "case_id"
-    t.integer  "charge_id"
-    t.text     "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "cases_charges", ["case_id"], name: "index_cases_charges_on_case_id", using: :btree
-  add_index "cases_charges", ["charge_id"], name: "index_cases_charges_on_charge_id", using: :btree
 
   create_table "charges", force: :cascade do |t|
     t.string   "name"
@@ -91,16 +75,12 @@ ActiveRecord::Schema.define(version: 20151006083233) do
     t.string   "state"
   end
 
-  create_table "defendants_cases", force: :cascade do |t|
+  create_table "defendant_charges", force: :cascade do |t|
     t.integer  "defendant_id"
-    t.integer  "case_id"
-    t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "charge_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
-
-  add_index "defendants_cases", ["case_id"], name: "index_defendants_cases_on_case_id", using: :btree
-  add_index "defendants_cases", ["defendant_id"], name: "index_defendants_cases_on_defendant_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.string   "type"
@@ -132,7 +112,6 @@ ActiveRecord::Schema.define(version: 20151006083233) do
   end
 
   create_table "people", force: :cascade do |t|
-    t.string   "type"
     t.string   "name"
     t.string   "immigration_status"
     t.datetime "created_at",         null: false
@@ -144,8 +123,8 @@ ActiveRecord::Schema.define(version: 20151006083233) do
     t.integer  "case_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "role"
     t.text     "comment"
+    t.string   "type"
   end
 
   add_index "people_cases", ["case_id"], name: "index_people_cases_on_case_id", using: :btree

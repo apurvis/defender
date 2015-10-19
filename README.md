@@ -3,7 +3,45 @@ Defender
 
 Basic rails app for public defender case management.
 
-# Installation
+# Basic Workflow
+
+To create a case with judges, defendants, attorneys, witnesses, charges, and events, use this workflow:
+
+1. Create all the people involved in your case via the "Add Person" link in the "All People" tab.
+2. Create a case via the "Add Case" link in the "Cases" tab
+3. Add complainants, defendants, judges, and attorneys via the appropriate links.  You will be asked to select the person from a drop down containing all people in the system.
+4. Add events via the "Add Event" link.  The date of the next "CourtAppearance" event will be automatically populated into the "Next Court Date" column in the case view.
+
+# Data Model
+
+## Cases
+
+Has basic information about the case (e.g. its docket number, district, etc.) and manages links between all the participants (attorneys, defendants, witnesses, judges, etc.).
+
+## People
+
+Self explanatory.  Have phone numbers, addresses, etc.
+
+## PeopleCases
+
+The links between people and cases.  This is where information about HOW a `Person` relates to a `Case` is encoded - for instance the fact that John is the `Judge`, or Jane is the `Witness`, or Jim is the `Defendant` all would be encoded at the `PeopleCase` level.  This allows a single person to play multiple roles in different cases.
+
+### PeopleCase Subclasses
+
+The possible ways a person can relate to a case are:
+
+* `Judge`
+* `DefenseAttorney`
+* `ProsecutingAttorney`
+* `Complainant`
+* `Defendant`
+* `Witness`
+
+## Charges
+
+There is a basic `Charge` class containing the name of the charge (e.g. "Robbery") and its type (e.g. "Misdemeanor").  Charges are attached to `Defendants` within a `Case`.
+
+# Installation of the App
 
 This application requires:
 
@@ -29,4 +67,3 @@ user.skip_confirmation!
 user.role = 'admin'
 user.save
 ```
-

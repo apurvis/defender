@@ -1,2 +1,2 @@
-class Judge < Person
+class Judge < PeopleCase
 end

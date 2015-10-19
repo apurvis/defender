@@ -4,8 +4,16 @@ class Case < ActiveRecord::Base
 
   has_many :court_appearances, -> { order(:happened_at) }
   has_many :events, -> { order(:happened_at) }
+
   has_many :people_cases
   has_many :people, through: :people_cases
+  has_many :complainants
+  has_many :defendants
+  has_many :defense_attorneys
+  has_many :judges
+  has_many :prosecuting_attorneys
+  has_many :witnesses
+
   has_many :cases_charges
   has_many :charges, through: :cases_charges
 
@@ -14,62 +22,10 @@ class Case < ActiveRecord::Base
   belongs_to :case_type
   belongs_to :practice
 
-  belongs_to :initial_top_charge, foreign_key: 'initial_top_charge_id', class_name: 'Charge'
-  belongs_to :current_top_charge, foreign_key: 'current_top_charge_id', class_name: 'Charge'
-  belongs_to :disposition_top_charge, foreign_key: 'disposition_top_charge_id', class_name: 'Charge'
-
   validates_presence_of :docket_number
 
-  def attorneys
-    people.where(type: 'Attorney')
-  end
-
-  def attorneys_cases
-    people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Attorney'")
-  end
-
-  def prosecutors_cases
-    attorneys_cases.where(role: 'Prosecution')
-  end
-
-  def defenders_cases
-    attorneys_cases.where(role: 'Defense')
-  end
-
-  def prosecutors
-    prosecutors_cases.map { |p| p.person }
-  end
-
-  def defenders
-    defenders_cases.map { |d| d.person }
-  end
-
-  def defendants
-    people.where(type: 'Defendant')
-  end
-
-  def defendants_cases
-    people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Defendant'")
-  end
-
-  def judges
-    people.where(type: 'Judge')
-  end
-
-  def judges_cases
-    people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Judge'")
-  end
-
-  def witnesses
-    people.where(type: 'Witness')
-  end
-
-  def witnesses_cases
-    people_cases.joins("INNER JOIN people ON people.id=people_cases.person_id AND people.type='Witness'")
-  end
-
   def formatted_name
-    "People v. #{defendants.join(', ')}"
+    "People v. #{defendants.map { |d| d.person}.join(', ')}"
   end
 
   def next_court_date
