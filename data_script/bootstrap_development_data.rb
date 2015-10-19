@@ -68,7 +68,6 @@ def create_cases
   CourtAppearance.create(case_id: c.id, happened_at: Time.now.utc + 1.year, hearing_type: 'Trial')
 end
 
-
 create_counties
 create_offices
 create_people
