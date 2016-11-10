@@ -67,3 +67,5 @@ user.skip_confirmation!
 user.role = 'admin'
 user.save
 ```
+
+
